@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { Phone, Mail, Clock, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import { company } from '../data/site.js'
 
 const links = [
@@ -13,31 +13,31 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   return (
-    <header className="sticky top-0 z-50">
-      {/* utility bar */}
-      <div className="hidden bg-navy-950 text-sm text-slate-300 md:block">
-        <div className="container-x flex h-10 items-center justify-between">
-          <div className="flex items-center gap-6">
-            <a href={company.phoneHref} className="flex items-center gap-2 transition-colors hover:text-gold-400">
-              <Phone size={14} /> {company.phone}
-            </a>
-            <a href={`mailto:${company.email}`} className="flex items-center gap-2 transition-colors hover:text-gold-400">
-              <Mail size={14} /> {company.email}
-            </a>
-          </div>
-          <div className="flex items-center gap-2">
-            <Clock size={14} className="text-gold-400" /> {company.hours}
-          </div>
-        </div>
-      </div>
-
-      {/* main nav */}
-      <nav className="border-b border-slate-100 bg-white shadow-sm">
-        <div className="container-x flex h-[76px] items-center justify-between">
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
+        scrolled ? 'bg-gold-500 shadow-lg' : 'bg-transparent'
+      }`}
+    >
+      <nav>
+        <div className="container-x flex h-20 items-center justify-between">
           <Link to="/" onClick={() => setOpen(false)}>
-            <img src="/images/logo.png" alt={company.name} className="h-11 w-auto" />
+            <img
+              src="/images/logo.png"
+              alt={company.name}
+              className={`h-12 w-auto transition-all duration-300 ${
+                scrolled ? '' : 'brightness-0 invert'
+              }`}
+            />
           </Link>
 
           <ul className="hidden items-center gap-1 lg:flex">
@@ -47,7 +47,13 @@ export default function Navbar() {
                   to={l.to}
                   className={({ isActive }) =>
                     `px-4 py-2 text-sm font-semibold uppercase tracking-wide transition-colors duration-300 ${
-                      isActive ? 'text-gold-500' : 'text-navy-900 hover:text-gold-500'
+                      scrolled
+                        ? isActive
+                          ? 'text-white'
+                          : 'text-navy-950 hover:text-white'
+                        : isActive
+                          ? 'text-gold-400'
+                          : 'text-white hover:text-gold-400'
                     }`
                   }
                 >
@@ -55,18 +61,21 @@ export default function Navbar() {
                 </NavLink>
               </li>
             ))}
-            <li>
+            <li className="ml-4 flex items-center gap-4">
+              <span className={`h-6 w-px ${scrolled ? 'bg-navy-950/30' : 'bg-white/40'}`} />
               <Link
                 to="/contact"
-                className="ml-4 bg-navy-900 px-5 py-2.5 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-gold-500 hover:text-navy-950"
+                className={`text-sm font-bold uppercase tracking-wide transition-colors duration-300 ${
+                  scrolled ? 'text-navy-950 hover:text-white' : 'text-white hover:text-gold-400'
+                }`}
               >
-                Get a Quote
+                Get In Touch
               </Link>
             </li>
           </ul>
 
           <button
-            className="p-2 text-navy-900 lg:hidden"
+            className={`p-2 lg:hidden ${scrolled ? 'text-navy-950' : 'text-white'}`}
             onClick={() => setOpen(!open)}
             aria-label="Toggle menu"
           >
