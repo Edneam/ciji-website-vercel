@@ -234,6 +234,7 @@ export default function Home() {
               kicker="Why Choose Us"
               title="Technology, Quality, Commercials & Performance"
               align="left"
+              light
             />
             <p className="mt-5 leading-relaxed text-slate-300">
               It is our pride to declare that we are one of the most competitive construction
