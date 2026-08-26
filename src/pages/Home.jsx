@@ -39,31 +39,33 @@ export default function Home() {
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-navy-950/45" />
-        <div className="container-x relative py-28">
-          <Reveal>
-            <p className="flex items-center gap-4 text-base text-white">
-              <span className="h-[2px] w-12 bg-white" />
-              C.J Group of Companies
-            </p>
-          </Reveal>
-          <Reveal delay={120}>
-            <h1 className="font-display mt-5 max-w-4xl text-4xl font-bold uppercase leading-[1.08] tracking-tight text-white md:text-5xl">
-              Engineered Aluminium Solutions: Built by CIJI
-            </h1>
-          </Reveal>
-          <Reveal delay={200}>
-            <p className="mt-5 max-w-2xl text-xl text-slate-100">
-              Your trusted partner for high-performance aluminium &amp; glass solutions.
-            </p>
-          </Reveal>
-          <Reveal delay={280}>
-            <Link
-              to="/contact"
-              className="mt-9 inline-block bg-gold-500 px-8 py-3.5 text-base font-semibold text-navy-950 transition-colors duration-300 hover:bg-gold-400"
-            >
-              Get In Touch
-            </Link>
-          </Reveal>
+        <div className="container-x relative">
+          <div className="max-w-3xl py-24 md:py-28">
+            <Reveal>
+              <p className="flex items-center gap-4 text-sm text-white">
+                <span className="h-[2px] w-12 bg-white" />
+                C.J Group of Companies
+              </p>
+            </Reveal>
+            <Reveal delay={120}>
+              <h1 className="font-display mt-4 text-4xl font-bold uppercase leading-[1.08] tracking-tight text-white md:text-5xl">
+                Engineered Aluminium Solutions: Built by CIJI
+              </h1>
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="mt-4 text-lg text-slate-100">
+                Your trusted partner for high-performance aluminium &amp; glass solutions.
+              </p>
+            </Reveal>
+            <Reveal delay={280}>
+              <Link
+                to="/contact"
+                className="mt-8 inline-block bg-gold-500 px-7 py-3 text-sm font-semibold uppercase tracking-wide text-navy-950 transition-colors duration-300 hover:bg-gold-400"
+              >
+                Get In Touch
+              </Link>
+            </Reveal>
+          </div>
         </div>
       </section>
 
