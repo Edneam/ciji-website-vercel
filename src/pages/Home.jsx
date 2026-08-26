@@ -47,7 +47,7 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-display mt-5 max-w-4xl text-6xl font-bold uppercase leading-[1.05] tracking-tight text-white md:text-7xl">
+            <h1 className="font-display mt-5 max-w-4xl text-4xl font-bold uppercase leading-[1.08] tracking-tight text-white md:text-5xl">
               Engineered Aluminium Solutions: Built by CIJI
             </h1>
           </Reveal>
