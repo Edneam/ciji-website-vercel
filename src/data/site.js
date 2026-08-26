@@ -4,7 +4,7 @@ export const company = {
   sisterCompany: 'C.J Tec Contracting LLC',
   phone: '+971 06 5355094',
   phoneHref: 'tel:+971065355094',
-  email: 'ciji@cijiintl.com',
+  email: 'cijialum@yahoo.com',
   hours: '08:30 AM – 7:00 PM (Mon–Sat)',
   offices: [
     {

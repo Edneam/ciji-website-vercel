@@ -35,7 +35,7 @@ export default function Navbar() {
               src="/images/logo.png"
               alt={company.name}
               className={`h-12 w-auto transition-all duration-300 ${
-                scrolled ? '' : 'brightness-0 invert'
+                scrolled ? 'brightness-0' : 'brightness-0 invert'
               }`}
             />
           </Link>
