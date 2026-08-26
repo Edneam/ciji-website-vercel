@@ -30,34 +30,23 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/75 to-navy-950/20" />
         <div className="container-x relative py-28">
           <Reveal>
-            <p className="kicker">Aluminium · Glass · Façade Contracting</p>
+            <p className="flex items-center gap-4 text-base text-white">
+              <span className="h-[2px] w-12 bg-white" />
+              C.J Group of Companies
+            </p>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-display mt-4 max-w-3xl text-5xl font-extrabold leading-[1.08] text-white md:text-6xl">
-              The Leading Aluminium Contracting Company in the UAE
+            <h1 className="font-display mt-5 max-w-4xl text-5xl font-semibold uppercase leading-[1.08] tracking-tight text-white md:text-6xl">
+              Engineered Aluminium Solutions: Built by CIJI
             </h1>
           </Reveal>
           <Reveal delay={220}>
-            <p className="mt-6 max-w-xl text-lg text-slate-200">
-              Aluminium fabrication, structural glazing and façade works are core units of our
-              business — delivering exceptional quality at competitive pricing for over a decade.
-            </p>
-          </Reveal>
-          <Reveal delay={320}>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link
-                to="/contact"
-                className="bg-gold-500 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-navy-950 transition-colors duration-300 hover:bg-gold-400"
-              >
-                Get a Quote
-              </Link>
-              <Link
-                to="/projects"
-                className="flex items-center gap-2 border-2 border-white/60 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-300 hover:border-gold-400 hover:text-gold-400"
-              >
-                Our Projects <ArrowRight size={16} />
-              </Link>
-            </div>
+            <Link
+              to="/about"
+              className="mt-9 inline-block bg-navy-600 px-8 py-3.5 text-base font-medium text-white transition-colors duration-300 hover:bg-navy-700"
+            >
+              Discover More
+            </Link>
           </Reveal>
         </div>
       </section>
