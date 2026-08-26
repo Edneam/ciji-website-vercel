@@ -61,17 +61,6 @@ export default function Navbar() {
                 </NavLink>
               </li>
             ))}
-            <li className="ml-4 flex items-center gap-4">
-              <span className={`h-6 w-px ${scrolled ? 'bg-navy-950/30' : 'bg-white/40'}`} />
-              <Link
-                to="/contact"
-                className={`text-sm font-bold uppercase tracking-wide transition-colors duration-300 ${
-                  scrolled ? 'text-navy-950 hover:text-white' : 'text-white hover:text-gold-400'
-                }`}
-              >
-                Get In Touch
-              </Link>
-            </li>
           </ul>
 
           <button
