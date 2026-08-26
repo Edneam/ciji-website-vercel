@@ -21,13 +21,24 @@ export default function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative flex min-h-[640px] items-center overflow-hidden bg-navy-950 md:min-h-[720px]">
+      <section className="relative flex h-[85vh] min-h-[560px] items-center overflow-hidden bg-navy-950">
         <img
-          src="/images/projects/ic3-tower.jpg"
-          alt="CIJI façade project"
-          className="absolute inset-0 h-full w-full object-cover opacity-40"
+          src="/images/hero-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy-950 via-navy-950/75 to-navy-950/20" />
+        <video
+          className="absolute inset-0 h-full w-full object-cover"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-navy-950/45" />
         <div className="container-x relative py-28">
           <Reveal>
             <p className="flex items-center gap-4 text-base text-white">
@@ -36,16 +47,21 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={120}>
-            <h1 className="font-display mt-5 max-w-4xl text-5xl font-semibold uppercase leading-[1.08] tracking-tight text-white md:text-6xl">
+            <h1 className="font-display mt-5 max-w-4xl text-6xl font-bold uppercase leading-[1.05] tracking-tight text-white md:text-7xl">
               Engineered Aluminium Solutions: Built by CIJI
             </h1>
           </Reveal>
-          <Reveal delay={220}>
+          <Reveal delay={200}>
+            <p className="mt-5 max-w-2xl text-xl text-slate-100">
+              Your trusted partner for high-performance aluminium &amp; glass solutions.
+            </p>
+          </Reveal>
+          <Reveal delay={280}>
             <Link
-              to="/about"
-              className="mt-9 inline-block bg-navy-600 px-8 py-3.5 text-base font-medium text-white transition-colors duration-300 hover:bg-navy-700"
+              to="/contact"
+              className="mt-9 inline-block bg-gold-500 px-8 py-3.5 text-base font-semibold text-navy-950 transition-colors duration-300 hover:bg-gold-400"
             >
-              Discover More
+              Get In Touch
             </Link>
           </Reveal>
         </div>
