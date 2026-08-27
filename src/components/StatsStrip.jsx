@@ -13,7 +13,7 @@ export default function StatsStrip() {
             className={`text-center ${i > 0 ? 'lg:border-l lg:border-white/10' : ''}`}
           >
             <p className="font-display text-5xl font-extrabold text-gold-400 md:text-6xl">
-              <CountUp value={s.value} suffix="+" />
+              <CountUp value={s.value} />
             </p>
             <p className="mt-2 text-sm font-semibold uppercase tracking-widest text-slate-300">
               {s.label}

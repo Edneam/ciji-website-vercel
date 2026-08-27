@@ -28,12 +28,14 @@ export default function Navbar() {
         scrolled ? 'bg-gold-500 shadow-lg' : 'bg-transparent'
       }`}
     >
-      <nav>
+      <nav aria-label="Main Navigation">
         <div className="container-x flex h-20 items-center justify-between">
           <Link to="/" onClick={() => setOpen(false)}>
             <img
               src="/images/logo.png"
               alt={company.name}
+              width="180"
+              height="48"
               className={`h-12 w-auto transition-all duration-300 ${
                 scrolled ? 'brightness-0' : 'brightness-0 invert'
               }`}
@@ -64,16 +66,19 @@ export default function Navbar() {
           </ul>
 
           <button
+            type="button"
             className={`p-2 lg:hidden ${scrolled ? 'text-navy-950' : 'text-white'}`}
             onClick={() => setOpen(!open)}
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close main menu' : 'Open main menu'}
+            aria-expanded={open}
+            aria-controls="mobile-navigation-menu"
           >
             {open ? <X size={26} /> : <Menu size={26} />}
           </button>
         </div>
 
         {open && (
-          <ul className="border-t border-slate-100 bg-white px-4 pb-4 lg:hidden">
+          <ul id="mobile-navigation-menu" className="border-t border-slate-100 bg-white px-4 pb-4 lg:hidden">
             {links.map((l) => (
               <li key={l.to}>
                 <NavLink

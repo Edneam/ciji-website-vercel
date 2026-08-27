@@ -6,6 +6,7 @@ import About from './pages/About.jsx'
 import Services from './pages/Services.jsx'
 import Projects from './pages/Projects.jsx'
 import Contact from './pages/Contact.jsx'
+import NotFound from './pages/NotFound.jsx'
 import ScrollToTop from './components/ScrollToTop.jsx'
 
 export default function App() {
@@ -20,7 +21,7 @@ export default function App() {
           <Route path="/services" element={<Services />} />
           <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />

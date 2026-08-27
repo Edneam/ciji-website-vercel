@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container-x grid gap-10 py-16 md:grid-cols-2 lg:grid-cols-4">
         <div>
           <div className="mb-5 inline-block rounded bg-white px-3 py-2">
-            <img src="/images/logo.png" alt={company.name} className="h-10 w-auto" />
+            <img src="/images/logo.png" alt={company.name} width="160" height="40" className="h-10 w-auto" />
           </div>
           <p className="text-sm leading-relaxed">
             {company.group} — comprising {company.name} &amp; {company.sisterCompany} — with over a
@@ -19,13 +19,15 @@ export default function Footer() {
 
         <div>
           <h3 className="font-display mb-4 text-lg font-bold text-white">Quick Links</h3>
-          <ul className="space-y-2.5 text-sm">
-            <li><Link to="/" className="transition-colors hover:text-gold-400">Home</Link></li>
-            <li><Link to="/about" className="transition-colors hover:text-gold-400">About Us</Link></li>
-            <li><Link to="/services" className="transition-colors hover:text-gold-400">Services</Link></li>
-            <li><Link to="/projects" className="transition-colors hover:text-gold-400">Projects</Link></li>
-            <li><Link to="/contact" className="transition-colors hover:text-gold-400">Contact Us</Link></li>
-          </ul>
+          <nav aria-label="Footer Navigation">
+            <ul className="space-y-2.5 text-sm">
+              <li><Link to="/" className="transition-colors hover:text-gold-400">Home</Link></li>
+              <li><Link to="/about" className="transition-colors hover:text-gold-400">About Us</Link></li>
+              <li><Link to="/services" className="transition-colors hover:text-gold-400">Services</Link></li>
+              <li><Link to="/projects" className="transition-colors hover:text-gold-400">Projects</Link></li>
+              <li><Link to="/contact" className="transition-colors hover:text-gold-400">Contact Us</Link></li>
+            </ul>
+          </nav>
         </div>
 
         <div>
@@ -75,7 +77,9 @@ export default function Footer() {
         <div className="container-x flex flex-col items-center justify-between gap-3 py-5 text-xs sm:flex-row">
           <p>© 2026 {company.name}. All rights reserved.</p>
           <button
+            type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="Back to top"
             className="flex items-center gap-2 transition-colors hover:text-gold-400"
           >
             Back to top <ArrowUp size={14} />

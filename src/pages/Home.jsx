@@ -5,8 +5,48 @@ import StatsStrip from '../components/StatsStrip.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import ServiceIcon from '../components/ServiceIcon.jsx'
+import Seo from '../components/Seo.jsx'
 import { services } from '../data/services.js'
 import { projects, featured } from '../data/projects.js'
+
+const homeSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    '@id': 'https://cijialuminium.com/#organization',
+    name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+    alternateName: ['C.J Group of Companies', 'Ciji Aluminium'],
+    url: 'https://cijialuminium.com',
+    logo: 'https://cijialuminium.com/images/logo.png',
+    telephone: '+971-06-5355094',
+    email: 'cijialum@yahoo.com',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Industrial Area 17, Plot 39',
+      addressLocality: 'Sharjah',
+      addressCountry: 'AE',
+      postOfficeBoxNumber: 'P.O Box 44316',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': 'https://cijialuminium.com/#localbusiness',
+    name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+    image: 'https://cijialuminium.com/images/hero-poster.jpg',
+    telephone: '+971-06-5355094',
+    email: 'cijialum@yahoo.com',
+    priceRange: '$$$',
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: 'Industrial Area 17, Plot 39',
+      addressLocality: 'Sharjah',
+      addressCountry: 'AE',
+    },
+    areaServed: ['Sharjah', 'Dubai', 'Abu Dhabi', 'United Arab Emirates'],
+    openingHours: 'Mo-Sa 08:30-19:00',
+  },
+]
 
 const highlights = [
   { icon: Building2Icon, title: 'High-Rise Expertise', desc: 'Curtain walling and structural glazing for towers across the UAE.' },
@@ -20,12 +60,21 @@ function RulerIcon(props) { return <ServiceIcon index={7} size={26} {...props} /
 export default function Home() {
   return (
     <>
+      <Seo
+        title="Ciji Bldg. Metalic Const. Ind. LLC | Aluminium, Glass & Façade Contracting — UAE"
+        description="Leading aluminium & glass fabrication, structural glazing, curtain walling, spider glazing, and façade contracting across Dubai, Sharjah and the UAE. Part of C.J Group of Companies."
+        path="/"
+        schema={homeSchema}
+      />
       {/* Hero */}
       <section className="relative flex h-[85vh] min-h-[560px] items-center overflow-hidden bg-navy-950">
         <img
           src="/images/hero-poster.jpg"
           alt=""
           aria-hidden="true"
+          fetchpriority="high"
+          width="1920"
+          height="1080"
           className="absolute inset-0 h-full w-full object-cover"
         />
         <video
@@ -76,12 +125,16 @@ export default function Home() {
             <span className="absolute -left-3 -top-3 hidden h-full w-full border-4 border-gold-400 md:block" />
             <img
               src="/images/projects/satwa-g8.jpg"
-              alt="G+8 residential building, Satwa"
+              alt="G+8 residential building with structural glass façade in Satwa, Dubai"
+              width="800"
+              height="600"
               className="relative w-full object-cover shadow-xl"
             />
             <img
               src="/images/projects/mag-building.jpg"
-              alt="Façade detail"
+              alt="Aluminium and glass façade detail on Mag Building, Dubai"
+              width="400"
+              height="300"
               className="absolute -bottom-0 right-0 hidden w-1/2 border-8 border-white object-cover shadow-xl md:block"
             />
           </Reveal>

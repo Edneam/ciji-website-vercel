@@ -3,7 +3,36 @@ import { Phone, Mail, Clock, MapPin, Send } from 'lucide-react'
 import PageHeader from '../components/PageHeader.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
+import Seo from '../components/Seo.jsx'
 import { company } from '../data/site.js'
+
+const contactSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://cijialuminium.com/contact' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Ciji Bldg. Metalic Const. Ind. LLC',
+    mainEntity: {
+      '@type': 'LocalBusiness',
+      name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+      telephone: '+971-06-5355094',
+      email: 'cijialum@yahoo.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Industrial Area 17, Plot 39',
+        addressLocality: 'Sharjah',
+        addressCountry: 'AE',
+      },
+    },
+  },
+]
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
@@ -28,6 +57,12 @@ export default function Contact() {
 
   return (
     <>
+      <Seo
+        title="Contact Us | Ciji Bldg. Metalic Const. Ind. LLC — Sharjah & Dubai Offices"
+        description="Contact Ciji Bldg. Metalic Const. Ind. LLC for aluminium & glass fabrication enquiries and project quotes. Head office in Sharjah Industrial Area 17, Dubai office in Sky Business Centre."
+        path="/contact"
+        schema={contactSchema}
+      />
       <PageHeader title="Contact Us" crumb="Contact" image="/images/projects/umm-al-shaif.jpg" />
 
       <section className="py-20 md:py-28">
@@ -64,38 +99,72 @@ export default function Contact() {
             <Reveal>
               <SectionHeading kicker="Get In Touch" title="Request a Quote" align="left" />
               <form onSubmit={submit} className="mt-8 space-y-5">
-                <input
-                  required
-                  placeholder="Your Name *"
-                  value={form.name}
-                  onChange={set('name')}
-                  className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
-                />
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="contact-name" className="sr-only">
+                    Your Name *
+                  </label>
                   <input
+                    id="contact-name"
+                    name="name"
+                    autoComplete="name"
+                    aria-required="true"
                     required
-                    type="email"
-                    placeholder="Email Address *"
-                    value={form.email}
-                    onChange={set('email')}
-                    className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
-                  />
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    value={form.phone}
-                    onChange={set('phone')}
+                    placeholder="Your Name *"
+                    value={form.name}
+                    onChange={set('name')}
                     className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
                   />
                 </div>
-                <textarea
-                  required
-                  rows={5}
-                  placeholder="Tell us about your project *"
-                  value={form.message}
-                  onChange={set('message')}
-                  className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
-                />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="contact-email" className="sr-only">
+                      Email Address *
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      autoComplete="email"
+                      aria-required="true"
+                      required
+                      placeholder="Email Address *"
+                      value={form.email}
+                      onChange={set('email')}
+                      className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-phone" className="sr-only">
+                      Phone Number
+                    </label>
+                    <input
+                      id="contact-phone"
+                      name="phone"
+                      type="tel"
+                      autoComplete="tel"
+                      placeholder="Phone Number"
+                      value={form.phone}
+                      onChange={set('phone')}
+                      className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <label htmlFor="contact-message" className="sr-only">
+                    Project details *
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    aria-required="true"
+                    required
+                    rows={5}
+                    placeholder="Tell us about your project *"
+                    value={form.message}
+                    onChange={set('message')}
+                    className="w-full border border-slate-300 px-4 py-3 outline-none transition-colors focus:border-gold-500"
+                  />
+                </div>
                 <button
                   type="submit"
                   className="flex items-center gap-2 bg-navy-900 px-7 py-3.5 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-gold-500 hover:text-navy-950"

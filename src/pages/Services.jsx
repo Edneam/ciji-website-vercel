@@ -4,7 +4,41 @@ import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
 import ServiceIcon from '../components/ServiceIcon.jsx'
+import Seo from '../components/Seo.jsx'
 import { services } from '../data/services.js'
+
+const servicesSchema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cijialuminium.com/services' },
+    ],
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Aluminium and Glass Façade Contracting',
+    provider: {
+      '@type': 'Organization',
+      name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+    },
+    areaServed: 'United Arab Emirates',
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Aluminium and Glass Services',
+      itemListElement: services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: s.title,
+          description: s.desc,
+        },
+      })),
+    },
+  },
+]
 
 const featured = [
   {
@@ -74,6 +108,12 @@ const related = [
 export default function Services() {
   return (
     <>
+      <Seo
+        title="Aluminium & Glass Services | Structural Glazing, Curtain Walls & Cladding UAE"
+        description="Comprehensive aluminium and glass contracting services in the UAE: structural glazing, curtain walling, spider glazing, skylights, space frames, ACP cladding, glass partitions, and automatic doors."
+        path="/services"
+        schema={servicesSchema}
+      />
       <PageHeader title="Our Services" crumb="Services" image="/images/projects/dubai-walls.jpg" />
 
       {/* intro */}
@@ -104,8 +144,10 @@ export default function Services() {
                   />
                   <img
                     src={s.image}
-                    alt={s.title}
+                    alt={`${s.title} installation by CIJI Aluminium`}
                     loading="lazy"
+                    width="800"
+                    height="600"
                     className="img-zoom relative aspect-[4/3] w-full object-cover shadow-xl"
                   />
                 </div>
@@ -172,6 +214,8 @@ export default function Services() {
                   src={r.image}
                   alt={r.label}
                   loading="lazy"
+                  width="600"
+                  height="450"
                   className="img-zoom aspect-[4/3] w-full object-cover"
                 />
                 <div className="absolute inset-0 bg-navy-950/20 transition-colors duration-300 group-hover:bg-navy-950/35" />

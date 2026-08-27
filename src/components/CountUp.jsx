@@ -5,6 +5,7 @@ export default function CountUp({ value, suffix = '', duration = 1800, className
   const ref = useRef(null)
   const [display, setDisplay] = useState(0)
   const target = parseInt(String(value).replace(/\D/g, ''), 10) || 0
+  const finalSuffix = suffix || String(value).replace(/[0-9]/g, '')
 
   useEffect(() => {
     const el = ref.current
@@ -35,7 +36,7 @@ export default function CountUp({ value, suffix = '', duration = 1800, className
   return (
     <span ref={ref} className={className}>
       {display}
-      {suffix}
+      {finalSuffix}
     </span>
   )
 }

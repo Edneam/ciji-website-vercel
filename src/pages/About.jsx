@@ -5,15 +5,31 @@ import StatsStrip from '../components/StatsStrip.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
+import Seo from '../components/Seo.jsx'
 
 const gallery = [
   ...Array.from({ length: 8 }, (_, i) => `/images/gallery/tower-${i + 1}.jpeg`),
   ...Array.from({ length: 4 }, (_, i) => `/images/gallery/tower-hi-${i + 1}.jpeg`),
 ]
 
+const aboutSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://cijialuminium.com/about' },
+  ],
+}
+
 export default function About() {
   return (
     <>
+      <Seo
+        title="About Us | Ciji Bldg. Metalic Const. Ind. LLC — UAE Façade Contractors"
+        description="Learn about Ciji Bldg. Metalic Const. Ind. LLC & C.J Group of Companies — over a decade of aluminium & glass fabrication and structural glazing excellence in the UAE."
+        path="/about"
+        schema={aboutSchema}
+      />
       <PageHeader title="About Us" crumb="About Us" image="/images/projects/jvt-residential.jpg" />
 
       <section className="py-20 md:py-28">
@@ -56,7 +72,9 @@ export default function About() {
             <span className="absolute -right-3 -top-3 hidden h-full w-full border-4 border-gold-400 md:block" />
             <img
               src="/images/projects/pivot-building.jpg"
-              alt="CIJI project building"
+              alt="Pivot Building aluminium and glass curtain wall façade, Dubai"
+              width="800"
+              height="600"
               className="relative w-full object-cover shadow-xl"
             />
           </Reveal>
@@ -107,8 +125,10 @@ export default function About() {
           <Reveal className="img-zoom order-last lg:order-first">
             <img
               src="/images/projects/titan-building.jpg"
-              alt="Titan building façade"
+              alt="Titan Building structural glazing and aluminium panel exterior, Sharjah"
               loading="lazy"
+              width="800"
+              height="600"
               className="w-full object-cover shadow-xl"
             />
           </Reveal>
@@ -157,7 +177,14 @@ export default function About() {
           <div className="mt-14 columns-2 gap-4 md:columns-3 lg:columns-4 [&>div]:mb-4">
             {gallery.map((src, i) => (
               <Reveal key={src} delay={(i % 4) * 70} className="img-zoom block break-inside-avoid">
-                <img src={src} alt="CIJI project" loading="lazy" className="w-full" />
+                <img
+                  src={src}
+                  alt={`CIJI aluminium & glass façade project highlight ${i + 1}`}
+                  loading="lazy"
+                  width="400"
+                  height="500"
+                  className="w-full"
+                />
               </Reveal>
             ))}
           </div>
