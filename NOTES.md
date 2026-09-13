@@ -113,10 +113,15 @@ named, remove that row.
 ### The 404 page
 
 `/nope` and any other unknown path render the custom 404 page correctly in
-the SPA. Confirm the host returns a real **HTTP 404 status** for unknown
-paths rather than 200, otherwise search engines will index them as valid
-pages. On Cloudflare Pages this needs a `404.html` or an explicit rule; the
-current `_redirects` sends everything to `index.html`.
+the SPA. But the host returns **HTTP 200** for them, not 404, because
+`vercel.json` rewrites every unmatched path to `index.html` so client-side
+routing works. That is the standard trade-off for an SPA: the visitor sees the
+right page, but a crawler is told the URL is valid.
+
+It has not caused a problem here (nothing links to a bad path, and the sitemap
+lists only real routes), but if soft-404 indexing ever shows up in Search
+Console the fix is to pre-render the real routes to static files at build time
+so only genuine misses fall through to the rewrite.
 
 ### Email address
 
@@ -198,7 +203,7 @@ Practical consequences worth knowing:
 - Enquiries arrive in a Yahoo mailbox, so the enquiry data lives there.
 - There is no spam filtering and no delivery confirmation.
 
-A Cloudflare Pages Function plus a transactional mail service would fix all
+A Vercel serverless function plus a transactional mail service would fix all
 three. That is a build task, not a legal one, and it is not done.
 
 ### Refund policy

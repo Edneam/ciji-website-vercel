@@ -1,74 +1,85 @@
-# Ciji Building Metallic Construction Industry LLC - Website
+# Ciji Bldg. Metalic Const. Ind. LLC — website
 
-React + Vite + Tailwind CSS application configured for deployment on **Cloudflare Pages**.
+Marketing site for a UAE aluminium and glass facade contractor. React + Vite +
+Tailwind CSS, deployed on **Vercel**.
 
 ---
 
-## 🚀 Quick Start (Local Development)
+## Local development
 
 ```bash
-# Install dependencies
-npm install
-
-# Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview build locally
-npm run preview
+npm install      # first time only
+npm run dev      # dev server on http://localhost:5173
+npm run lint     # oxlint, must report 0 errors
+npm run build    # production build into dist/
+npm run preview  # serve the built output locally
 ```
 
----
-
-## ☁️ Hosting on Cloudflare Pages
-
-### Option 1: Cloudflare Dashboard (Recommended / Easiest)
-
-1. Log into your [Cloudflare Dashboard](https://dash.cloudflare.com/).
-2. Go to **Compute (Workers & Pages)** > **Create application** > **Pages** > **Connect to Git**.
-3. Select your repository (`ciji-website`).
-4. Set the build configurations:
-   - **Framework preset**: `Vite`
-   - **Build command**: `npm run build`
-   - **Build output directory**: `dist`
-   - **Root directory**: `/` (or leave blank if repository root is the project root)
-5. Click **Save and Deploy**. Cloudflare will automatically build and deploy every commit pushed to `main`.
+Run `npm run lint` and `npm run build` before pushing. Both must pass.
 
 ---
 
-### Option 2: Wrangler CLI Deployment
+## Deploying on Vercel
 
-You can deploy directly from your local terminal using Wrangler:
+Import the repository at [vercel.com/new](https://vercel.com/new). Vercel
+detects Vite automatically, so the defaults are correct:
 
-```bash
-# Log in to Cloudflare (one-time)
-npx wrangler login
+| Setting | Value |
+|---|---|
+| Framework preset | Vite |
+| Build command | `npm run build` |
+| Output directory | `dist` |
+| Install command | `npm install` |
+| Node version | 20 or newer |
 
-# Build and deploy to Cloudflare Pages
-npm run deploy
+No environment variables are required. Nothing in the site talks to a backend.
+
+Every push to `main` triggers a production deployment; pull requests get their
+own preview URL.
+
+### vercel.json
+
+[`vercel.json`](vercel.json) carries two things that would otherwise break:
+
+**The SPA rewrite.** Routing is client-side, so `/projects` is not a file on
+disk. Without the rewrite, a direct visit, a shared link, or a crawler hitting
+any inner page gets Vercel's own 404. The rewrite serves `index.html` for
+unmatched paths and lets React Router resolve them, while `/assets`, `/images`,
+`/videos`, `/fonts` and the root files are excluded so real assets still 404
+properly when missing instead of silently returning HTML.
+
+**Security headers and caching.** A CSP restricted to self-hosted assets plus
+the Google Maps frame on the contact page, `nosniff`, `SAMEORIGIN`, a
+restrictive `Permissions-Policy`, and immutable caching for fingerprinted
+build output and fonts.
+
+> Migrated from Cloudflare Pages. `public/_headers`, `public/_redirects` and
+> `wrangler.toml` were Cloudflare-only and are gone; `vercel.json` replaces all
+> three. Do not delete it — deep links 404 without the rewrite.
+
+---
+
+## Project shape
+
+```
+public/
+  fonts/          self-hosted Barlow, Chivo, IBM Plex Mono (no third-party font requests)
+  images/         project photography
+  videos/         hero background clip
+src/
+  components/     Navbar, Footer, CtaBand, Lightbox, ReferenceList, ...
+  data/           site.js, projects.js, services.js — copy and figures live here
+  pages/          one file per route
+  index.css       design tokens, component classes, motion
 ```
 
----
-
-### Option 3: Automated GitHub Actions CI/CD
-
-A ready-to-use GitHub Actions workflow is located at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-
-To enable it:
-1. In your GitHub repository, go to **Settings > Secrets and variables > Actions**.
-2. Add the following repository secrets:
-   - `CLOUDFLARE_API_TOKEN`: Cloudflare API token with Pages edit permissions.
-   - `CLOUDFLARE_ACCOUNT_ID`: Your Cloudflare Account ID.
-3. Every push to `main` will automatically trigger a deployment.
+Content changes usually mean editing `src/data/`, not the pages.
 
 ---
 
-## 📁 Key Cloudflare Pages Files
+## Before launch
 
-- [`public/_redirects`](public/_redirects): Single-page application (SPA) rewrite rule (`/* /index.html 200`) enabling client-side routing on page refreshes.
-- [`public/_headers`](public/_headers): Security headers and long-term caching rules for `/assets/*` and `/images/*`.
-- [`public/robots.txt`](public/robots.txt): Search engine crawler instructions.
-- [`wrangler.toml`](wrangler.toml): Cloudflare Pages / Wrangler project configuration.
-
+Read [`NOTES.md`](NOTES.md). It lists the facts on the site that need
+confirming by the company (headcount and project figures, trade licence
+details, image rights), the legal and privacy position, and what has been
+verified versus what still needs a human.

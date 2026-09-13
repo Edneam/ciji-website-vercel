@@ -1,8 +1,0 @@
-# SPA fallback.
-#
-# Routing is client-side, so a direct request for /privacy, /terms or any
-# other route is not a file on disk. Without this rule the host returns its
-# own 404 for every deep link, shared URL and search-engine crawl of an
-# inner page. The 200 (not 302) keeps the requested URL in the address bar
-# so React Router can read it and render the right page.
-/*  /index.html  200
