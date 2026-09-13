@@ -1,16 +1,32 @@
 import { Link } from 'react-router-dom'
-import { CheckCircle2, Target, Eye, Gem } from 'lucide-react'
+import { Check } from '@phosphor-icons/react'
 import PageHeader from '../components/PageHeader.jsx'
 import StatsStrip from '../components/StatsStrip.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Seo from '../components/Seo.jsx'
+import { projects } from '../data/projects.js'
 
-const gallery = [
-  ...Array.from({ length: 8 }, (_, i) => `/images/gallery/tower-${i + 1}.jpeg`),
-  ...Array.from({ length: 4 }, (_, i) => `/images/gallery/tower-hi-${i + 1}.jpeg`),
-]
+/* Gallery built from the real project records, not /images/gallery.
+
+   The previous version mapped over 12 files in /images/gallery and labelled
+   each one "Completed aluminium and glass facade installation by CIJI, view N".
+   Those files are not photographs of installations: they are scanned pages from
+   a company profile, each collaging several photos together with white gutters,
+   and several carry other companies' signage across the facade (Black Bulls,
+   CPL Aroma, Morgan, Sanford, Citadines all appear). So the alt text asserted
+   something untrue about every one of them, and the page was showing third
+   parties' branding as CIJI's own work.
+
+   These are the same photographs the Projects page uses, and each one carries
+   its actual project name and location, so the caption is specific and
+   checkable instead of "view 7". */
+const gallery = projects.map((p) => ({
+  src: p.image,
+  title: p.title,
+  location: p.location,
+}))
 
 const aboutSchema = {
   '@context': 'https://schema.org',
@@ -21,170 +37,204 @@ const aboutSchema = {
   ],
 }
 
+/* Mission / vision / values. Presented as hairline-divided statements
+   rather than three identical icon cards: no Target/Eye/Gem metaphors,
+   no elevation where nothing is elevated. */
+const foundation = [
+  {
+    label: 'Mission',
+    text: 'Deliver exceptional customer service by improving project value through high-class design, fabrication and process management.',
+  },
+  {
+    label: 'Vision',
+    text: 'Remain one of the most competitive construction groups in the region in technology, quality, commercial terms and performance.',
+  },
+  {
+    label: 'Values',
+    text: 'Full compliance with regional standards, rules and regulations, with honesty, safety and craftsmanship in everything we build.',
+  },
+]
+
+const capabilities = [
+  'Undertake a wide range of projects in all types of locations',
+  'Fully conversant with regional construction regulations and labour law',
+  'Track record with government authorities and private developers',
+  'Technically qualified experts with deep field experience',
+  'Competitive pricing with a high benefits-to-cost ratio',
+]
+
 export default function About() {
   return (
     <>
       <Seo
-        title="About Us | Ciji Bldg. Metalic Const. Ind. LLC — UAE Façade Contractors"
-        description="Learn about Ciji Bldg. Metalic Const. Ind. LLC & C.J Group of Companies — over a decade of aluminium & glass fabrication and structural glazing excellence in the UAE."
+        title="About Us | Ciji Bldg. Metalic Const. Ind. LLC, UAE Facade Contractor"
+        description="Ciji Bldg. Metalic Const. Ind. LLC and C.J Tec Contracting LLC form C.J Group of Companies, with over a decade of aluminium and glass fabrication, structural glazing and curtain walling experience in the UAE."
         path="/about"
         schema={aboutSchema}
       />
-      <PageHeader title="About Us" crumb="About Us" image="/images/projects/jvt-residential.jpg" />
+      <PageHeader
+        title="About the company"
+        crumb="About Us"
+        lead="A specialist aluminium and glass subcontractor working for main contractors and developers across the Emirates."
+        image="/images/projects/jvt-residential.jpg"
+      />
 
+      {/* ---- Who we are: text leads, single supporting image ---- */}
       <section className="py-20 md:py-28">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2">
+        <div className="container-x grid items-start gap-14 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
           <div>
             <Reveal>
-              <SectionHeading kicker="All About Us" title="A Decade of Aluminium & Glass Excellence" align="left" />
+              <SectionHeading title="Over a decade on UAE building envelopes" />
             </Reveal>
-            <Reveal delay={120}>
-              <div className="mt-6 space-y-4 leading-relaxed">
+            <Reveal delay={100}>
+              <div className="mt-7 space-y-5 leading-relaxed">
                 <p>
                   We are pleased to introduce ourselves as <strong>C.J Group of Companies</strong>,
-                  comprising <strong>Ciji Bldg. Metalic Const. Ind. LLC</strong> &amp;{' '}
-                  <strong>C.J Tec Contracting LLC</strong>, having over a decade of experience in
-                  the construction industry in the U.A.E.
+                  comprising <strong>Ciji Bldg. Metalic Const. Ind. LLC</strong> and{' '}
+                  <strong>C.J Tec Contracting LLC</strong>, with over a decade of experience in the
+                  construction industry in the U.A.E.
                 </p>
                 <p>
-                  We are specialized in aluminium and glass fabrication work with technically
-                  qualified experts, well experienced in the field. Our range of activities include
-                  design, fabrication and installation of structural glazing and curtain walling
-                  for high-rise buildings, skylights, glass partitions, automatic doors, aluminium
-                  and stainless steel claddings, doors, windows, gates and more.
+                  We specialise in aluminium and glass fabrication with technically qualified
+                  experts, well experienced in the field. Our range of activities includes design,
+                  fabrication and installation of structural glazing and curtain walling for
+                  high-rise buildings, skylights, glass partitions, automatic doors, aluminium and
+                  stainless steel cladding, doors, windows and gates.
                 </p>
                 <p>
-                  We offer full solutions for building &amp; infrastructural projects with
-                  exceptional quality at competitive pricing. Our primary focus is to provide
-                  exceptional customer service by improving your project value with a high
+                  We offer full solutions for building and infrastructure projects at competitive
+                  pricing. Our primary focus is to improve project value with a high
                   benefits-to-cost ratio.
                 </p>
                 <p>
-                  It is our pride to declare that we are one of the most competitive construction
-                  groups in the region in terms of technology, quality, commercials and
-                  performance. We assure you of our best efforts and professional approach to
-                  business enquiries and awarded projects alike.
+                  We compete in the region on technology, quality, commercial terms and delivered
+                  performance, and we bring the same professional approach to business enquiries as
+                  to awarded projects.
                 </p>
               </div>
             </Reveal>
           </div>
-          <Reveal delay={150} className="relative pb-8 pr-4 md:pr-8">
-            <span className="absolute -right-3 -top-3 hidden h-full w-full border-4 border-gold-400 md:block" />
+
+          {/* Not sticky: this is a grid item whose height matches the row, so
+              there is no travel range for `position: sticky` to use. It was a
+              silent no-op, so the classes are gone rather than left in place
+              looking intentional. */}
+          <Reveal delay={160} className="img-zoom">
             <img
               src="/images/projects/pivot-building.jpg"
-              alt="Pivot Building aluminium and glass curtain wall façade, Dubai"
+              alt="Curtain wall facade on the Pivot Building, Dubai, fabricated and installed by CIJI"
               width="800"
-              height="600"
-              className="relative w-full object-cover shadow-xl"
+              height="1000"
+              className="aspect-[4/5] w-full object-cover"
             />
+            <p className="spec-label mt-3">Pivot Building, Dubai</p>
           </Reveal>
         </div>
       </section>
 
-      {/* mission / vision / values */}
-      <section className="bg-slate-50 py-20 md:py-28">
-        <div className="container-x">
-          <Reveal>
-            <SectionHeading kicker="Our Foundation" title="Mission, Vision & Values" />
-          </Reveal>
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                icon: Target,
-                title: 'Our Mission',
-                desc: 'To deliver exceptional customer service by improving project value through high-class design, fabrication and process management.',
-              },
-              {
-                icon: Eye,
-                title: 'Our Vision',
-                desc: 'To remain one of the most competitive construction groups in the region in technology, quality, commercials and performance.',
-              },
-              {
-                icon: Gem,
-                title: 'Our Values',
-                desc: 'Full compliance with regional standards, rules and regulations — with honesty, safety and craftsmanship in everything we build.',
-              },
-            ].map((c, i) => (
-              <Reveal key={c.title} delay={i * 100}>
-                <div className="card-lift h-full border-t-4 border-gold-500 bg-white p-8 text-center shadow-sm">
-                  <c.icon size={32} className="mx-auto text-navy-900" />
-                  <h3 className="font-display mt-4 text-xl font-bold text-navy-900">{c.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed">{c.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+      {/* ---- Foundation: hairline-divided statements, no cards, no icons ---- */}
+      <section className="border-y border-steel-200 bg-steel-50 py-16 md:py-20">
+        <div className="container-x grid gap-px sm:grid-cols-3">
+          {foundation.map((f, i) => (
+            <Reveal
+              key={f.label}
+              delay={i * 90}
+              className={`py-6 sm:px-8 sm:py-2 ${
+                i > 0 ? 'border-t border-steel-200 pt-6 sm:border-l sm:border-t-0 sm:pt-2' : 'sm:pl-0'
+              }`}
+            >
+              <h2 className="spec-label text-gold-700">{f.label}</h2>
+              <p className="font-display mt-3 text-lg font-semibold leading-snug text-navy-950">
+                {f.text}
+              </p>
+            </Reveal>
+          ))}
         </div>
       </section>
 
       <StatsStrip />
 
-      {/* why us checklist */}
+      {/* ---- Capabilities: numbered rows (a real enumerated list) beside image ---- */}
       <section className="py-20 md:py-28">
-        <div className="container-x grid items-center gap-14 lg:grid-cols-2">
+        <div className="container-x grid items-center gap-14 lg:grid-cols-2 lg:gap-20">
           <Reveal className="img-zoom order-last lg:order-first">
             <img
               src="/images/projects/titan-building.jpg"
-              alt="Titan Building structural glazing and aluminium panel exterior, Sharjah"
+              alt="Structural glazing and aluminium panels on the Titan Building, Sharjah"
               loading="lazy"
               width="800"
               height="600"
-              className="w-full object-cover shadow-xl"
+              className="aspect-[4/3] w-full object-cover"
             />
+            <p className="spec-label mt-3">Titan Building, Sharjah</p>
           </Reveal>
           <div>
             <Reveal>
-              <SectionHeading kicker="Why Choose Us" title="Resources, Knowledge & Unmatched Expertise" align="left" />
+              <SectionHeading title="What we bring to a facade package" />
             </Reveal>
-            <Reveal delay={120}>
-              <ul className="mt-6 space-y-4">
-                {[
-                  'Undertake a wide range of projects in all types of locations',
-                  'Fully conversant with regional construction regulations and labour laws',
-                  'Proven track record with government agencies and private developers',
-                  'Technically qualified experts with deep field experience',
-                  'Competitive pricing with high benefits-to-cost ratio',
-                ].map((t) => (
-                  <li key={t} className="flex gap-3">
-                    <CheckCircle2 size={22} className="mt-0.5 shrink-0 text-gold-500" />
-                    <span>{t}</span>
+            <Reveal delay={100}>
+              <ul className="mt-8">
+                {capabilities.map((c) => (
+                  <li
+                    key={c}
+                    className="flex gap-4 border-t border-steel-200 py-4 last:border-b last:border-steel-200"
+                  >
+                    <Check
+                      size={18}
+                      weight="bold"
+                      aria-hidden="true"
+                      className="mt-1 shrink-0 text-gold-700"
+                    />
+                    <span>{c}</span>
                   </li>
                 ))}
               </ul>
             </Reveal>
-            <Reveal delay={220}>
+            <Reveal delay={180}>
               <Link
                 to="/contact"
-                className="mt-8 inline-block bg-navy-900 px-6 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors duration-300 hover:bg-gold-500 hover:text-navy-950"
+                className="btn btn-invert mt-8"
               >
-                Work With Us
+                Request a Quote
               </Link>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* gallery */}
-      <section className="bg-slate-50 py-20 md:py-28">
+      {/* ---- Gallery: masonry, a distinct layout family from everything above ---- */}
+      <section className="border-t border-steel-200 bg-steel-50 py-20 md:py-28">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              kicker="Project Gallery"
-              title="Our Work Across the UAE"
-              sub="Towers, residences and commercial façades delivered by our teams."
+              title="Facades across the Emirates"
+              sub="Installed work: towers, residences and commercial elevations completed by our own fabrication and installation teams."
             />
           </Reveal>
-          <div className="mt-14 columns-2 gap-4 md:columns-3 lg:columns-4 [&>div]:mb-4">
-            {gallery.map((src, i) => (
-              <Reveal key={src} delay={(i % 4) * 70} className="img-zoom block break-inside-avoid">
-                <img
-                  src={src}
-                  alt={`CIJI aluminium & glass façade project highlight ${i + 1}`}
-                  loading="lazy"
-                  width="400"
-                  height="500"
-                  className="w-full"
-                />
+          {/* A uniform grid, not a masonry column flow. The sources are a mix
+              of 4:3, 3:2 and portrait crops, so `columns` produced ragged
+              column bottoms; a fixed 4:3 object-cover cell keeps the grid
+              even and each caption on the same line as its neighbours. */}
+          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
+            {gallery.map((g, i) => (
+              <Reveal key={g.src} delay={(i % 4) * 60}>
+                <div className="img-zoom">
+                  <img
+                    src={g.src}
+                    alt={`${g.title}, aluminium and glass facade completed by CIJI in ${g.location}`}
+                    loading="lazy"
+                    width="600"
+                    height="450"
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                </div>
+                {/* Sentence case, not `spec-label`. These are real project
+                    names and several run past 40 characters ("Residential
+                    Building, Jumeirah Village Triangle" is 47), which is far
+                    too long to set in tracked uppercase: it costs the word
+                    shapes readers navigate by. Uppercase stays for short
+                    labels. */}
+                <p className="mt-2.5 font-mono text-xs leading-snug text-steel-500">{g.title}</p>
               </Reveal>
             ))}
           </div>

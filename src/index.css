@@ -1,9 +1,148 @@
 @import 'tailwindcss';
 
-@theme {
-  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --font-display: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+/* ---------------------------------------------------------------
+   Self-hosted fonts. No third-party render-blocking request.
 
+   Chivo      - display. Heavy industrial grotesque, tight and
+                blunt at 800/900. Carries the weight a metalwork
+                contractor needs in headlines.
+   Barlow     - body. Slightly condensed grotesque drawn from
+                transport and signage lettering. Reads as
+                engineering, not startup.
+   IBM Plex Mono - data, specs, reference codes. Tabular by design.
+   --------------------------------------------------------------- */
+
+/* Chivo is a variable font: one file covers 700-900. */
+@font-face {
+  font-family: 'Chivo';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url('/fonts/chivo-var-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Chivo';
+  font-style: normal;
+  font-weight: 700 900;
+  font-display: swap;
+  src: url('/fonts/chivo-var-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* Barlow ships as static instances: one file per weight. */
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/barlow-400-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/barlow-400-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/barlow-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/barlow-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/barlow-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Barlow';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/barlow-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/plex-mono-500-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/plex-mono-500-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plex-mono-600-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+    U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
+    U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/plex-mono-600-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
+    U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@theme {
+  --font-sans: 'Barlow', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Chivo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  /* Brand: locked. Navy ground, single gold accent. */
   --color-navy-950: #071627;
   --color-navy-900: #0a1f35;
   --color-navy-800: #10294a;
@@ -13,24 +152,98 @@
   --color-gold-400: #f5b921;
   --color-gold-500: #e8a312;
   --color-gold-600: #c98a0b;
+  /* Gold dark enough to be readable as TEXT on white (5.04:1). The lighter
+     golds above are for dark grounds and for fills, not for small text on
+     light backgrounds, where they measure below 3:1. */
+  --color-gold-700: #94660a;
+
+  /* One neutral family: cool, tuned to the navy ground. */
+  --color-steel-50: #f6f7f9;
+  --color-steel-100: #eceef2;
+  --color-steel-200: #d9dde4;
+  --color-steel-300: #b4bcc8;
+  --color-steel-400: #7e8a9c;
+  --color-steel-500: #55606f;
+  --color-steel-600: #414b58;
+
+  /* ---- small-type scale, bumped for readability ----------------------
+     Only the small end of the scale moves. text-lg and above keep their
+     Tailwind defaults, so every heading, the hero, the stat figures and
+     the bento titles render at exactly the size they did before.
+
+     Overriding the tokens here rather than editing ~50 call sites means
+     the whole site moves together and cannot drift out of step.
+
+       xs    12px -> 13px    (captions, table meta, fine print)
+       sm    14px -> 15px    (body copy in cards, labels, form text)
+       base  16px -> 17px    (default paragraph size)
+
+     Line heights are raised with the sizes; bumping size alone tightens
+     the measure and cancels out the readability gain. */
+  --text-xs: 0.8125rem;
+  --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;
+  --text-sm--line-height: 1.6;
+  --text-base: 1.0625rem;
+  --text-base--line-height: 1.65;
 
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 html {
   scroll-behavior: smooth;
+  /* Nothing on the page may push the document sideways. */
+  overflow-x: hidden;
 }
 
 body {
-  @apply bg-white text-slate-600 font-sans antialiased;
-  font-size: 15px;
-  line-height: 1.7;
+  @apply bg-white text-steel-500 font-sans antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  overflow-x: hidden;
+  /* Consistent figure width across the document: specs, counts,
+     phone numbers and project counts all align in columns. */
+  font-variant-numeric: tabular-nums;
 }
 
-/* Accessibility Focus States */
+/* Chivo runs wide and heavy; pull it tight for display use. */
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+  letter-spacing: -0.015em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+/* Accessibility focus states
+   ---------------------------------------------------------------------
+   A dual-tone ring, not a single gold one. WCAG 2.4.11 wants the focus
+   indicator to reach 3:1 against the adjacent background, and this site
+   puts focusable controls on four different grounds: white, steel-50,
+   navy-950, and the gold navbar once it is scrolled. Measured, no single
+   colour clears 3:1 on all four:
+
+     gold-500  white 2.17  steel-50 2.02  navy 8.39   gold nav 1.00
+     gold-700  white 5.04  steel-50 4.70  navy 3.61   gold nav 2.32
+     navy-950  white 18.21 steel-50 16.99 navy 1.00   gold nav 8.39
+     white     white 1.00  steel-50 1.07  navy 18.21  gold nav 2.17
+
+   The old rule was gold-500, which failed on every light ground: 2.17:1
+   on white and 2.02:1 on steel-50, and the site is now mostly light.
+
+   So the ring is navy with a white ring inside it, sitting in the
+   outline-offset gap. On light grounds the navy edge carries it (18.21:1);
+   on navy the white edge carries it (18.21:1); on the gold navbar the navy
+   edge carries it (8.39:1). One of the two is always well past 3:1.
+   -------------------------------------------------------------------- */
 :focus-visible {
-  outline: 2px solid var(--color-gold-400);
-  outline-offset: 3px;
+  outline: 2px solid var(--color-navy-950);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 ::selection {
@@ -38,31 +251,485 @@ body {
   color: var(--color-navy-950);
 }
 
+/* Keyboard users land here first. */
+.skip-link {
+  @apply sr-only;
+}
+.skip-link:focus {
+  @apply not-sr-only fixed left-4 top-4 z-[100] bg-navy-950 px-5 py-3 text-sm font-semibold text-white;
+}
+
 .font-display {
   font-family: var(--font-display);
 }
 
 .container-x {
-  @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-12;
 }
 
-.kicker {
-  @apply text-[12px] font-bold uppercase tracking-[0.25em] text-gold-500;
+/* ---- structural label: reference code / spec key ----
+   Used as a data label next to real values, not as decoration
+   above every heading.
+
+   Declared in @layer components so a utility class in the markup
+   (text-steel-300 on a dark section, text-gold-500 on navy) overrides
+   this colour instead of losing to it. Default tone is steel-500,
+   which clears 4.5:1 on white, steel-50 and steel-100. */
+@layer components {
+  .spec-label {
+    @apply font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-steel-500;
+  }
 }
 
-/* ---- scroll reveal (polish layer) ---- */
+/* ---- hairline rule used to structure content instead of card chrome ---- */
+.rule-top {
+  @apply border-t border-steel-200;
+}
+
+/* ---- page transition -------------------------------------------------
+   A short blink: the new page dips to 0 opacity and comes straight back
+   up. Nothing moves vertically.
+
+   Why opacity only, no translate:
+   - A `translateY` on the page wrapper is what makes content appear to
+     "travel upwards" on every navigation. Removing it is the whole point
+     of this version.
+   - No `transform` at all means no containing block is created, so any
+     `position: sticky` or `fixed` descendant keeps working.
+   - Opacity alone is composited, so this cannot cause layout thrash.
+
+   Duration is deliberately short (200ms). Longer reads as a page load;
+   this should read as a blink and then the content is simply there.
+   -------------------------------------------------------------------- */
+@keyframes page-in {
+  from {
+    opacity: 0;
+    /* A 1.2% scale settle, not a slide. Scale keeps the motion centred on the
+       viewport instead of dragging content across it, which is what made the
+       old translate version read as "the page jumped upwards". At 1.012 the
+       movement is a few pixels at the edges: felt, not watched. */
+    transform: scale(1.012);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* The wrapper animates; a thin gold progress sweep runs across the top of the
+   viewport at the same time so the navigation reads as deliberate rather than
+   as a flicker. */
+@keyframes route-sweep {
+  from {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+.page-in {
+  /* 420ms with an expo ease-out: the first half of the curve covers most of
+     the distance, so it feels immediate while still reading as a transition.
+
+     `backwards`, NOT `both`. `both` includes `forwards`, which retains the
+     final keyframe permanently, and the final keyframe here contains
+     `transform: scale(1)`. A retained transform, even an identity one, makes
+     this wrapper the containing block for every `position: fixed` descendant
+     for the rest of the page's life. That is not theoretical: it measured a
+     fixed overlay at 4336px tall (the full document) instead of the 633px
+     viewport. With `backwards` the transform exists only while the animation
+     runs, then the element reverts to having no transform at all. */
+  animation: page-in 420ms var(--ease-out-expo) backwards;
+}
+
+/* The transform above creates a containing block for the duration of the
+   animation, which would re-anchor any `position: fixed` descendant (the
+   navbar) to the wrapper. `animation-fill-mode: both` means the final frame is
+   `scale(1)` and the containing block is released when the animation ends, but
+   during those 420ms a fixed child would be positioned against the wrapper.
+   The navbar lives OUTSIDE this wrapper in App.jsx, so it is unaffected. Keep
+   it that way: do not move the header inside `.page-in`. */
+
+/* The sweep is its OWN element outside `.page-in`, not `.page-in::before`.
+   A pseudo-element of the wrapper inherits the wrapper's containing block, and
+   the wrapper is mid-scale while the animation runs, so `position: fixed` on it
+   does not resolve against the viewport. Measured: a fixed probe inside the
+   scaled wrapper landed at -7px at scroll 0, and further off the further down
+   the page you were, so the sweep was drawn outside the viewport entirely.
+   Rendered as a sibling in App.jsx, it is unaffected. */
+.route-sweep {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  z-index: 60;
+  height: 2px;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold-500) 40%,
+    var(--color-gold-400)
+  );
+  animation: route-sweep 520ms var(--ease-out-expo) both;
+  pointer-events: none;
+}
+
+/* ---- fullscreen image viewer ----------------------------------------
+   Opened from the project grid. Dark, quiet, and out of the way: the
+   photograph is the content, so the chrome is a thin top bar and two edge
+   arrows rather than a framed panel.
+   -------------------------------------------------------------------- */
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes lightbox-figure-in {
+  from {
+    opacity: 0;
+    transform: scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4.5rem 1rem 1rem;
+  /* Near-opaque rather than a light wash: a bright page behind a photograph
+     fights it. Backdrop blur is a progressive nicety, not load-bearing. */
+  background-color: color-mix(in srgb, var(--color-navy-950) 96%, transparent);
+  backdrop-filter: blur(8px);
+  animation: lightbox-in 220ms ease-out both;
+}
+
+.lightbox__bar {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 1.25rem;
+}
+
+.lightbox__btn {
+  display: inline-flex;
+  height: 2.75rem;
+  width: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  transition:
+    border-color 0.2s var(--ease-out-expo),
+    background-color 0.2s var(--ease-out-expo),
+    color 0.2s var(--ease-out-expo);
+}
+
+.lightbox__btn:hover {
+  border-color: var(--color-gold-500);
+  color: var(--color-gold-500);
+}
+
+.lightbox__figure {
+  display: flex;
+  max-height: 100%;
+  max-width: min(92rem, 100%);
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+  animation: lightbox-figure-in 280ms var(--ease-out-expo) both;
+}
+
+.lightbox__img {
+  /* `min-height: 0` lets the flex child actually shrink so tall portrait
+     images stay inside the viewport instead of pushing the caption off it. */
+  min-height: 0;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  align-self: center;
+}
+
+.lightbox__cap {
+  flex-shrink: 0;
+  text-align: center;
+}
+
+.lightbox__nav {
+  position: absolute;
+  inset-block-start: 50%;
+  display: inline-flex;
+  height: 3rem;
+  width: 3rem;
+  translate: 0 -50%;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  border: 1px solid rgb(255 255 255 / 0.25);
+  transition:
+    border-color 0.2s var(--ease-out-expo),
+    color 0.2s var(--ease-out-expo);
+}
+
+.lightbox__nav:hover {
+  border-color: var(--color-gold-500);
+  color: var(--color-gold-500);
+}
+
+.lightbox__nav--prev {
+  inset-inline-start: 0.75rem;
+}
+
+.lightbox__nav--next {
+  inset-inline-end: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .lightbox {
+    padding: 5.5rem 4.5rem 2rem;
+  }
+  .lightbox__nav--prev {
+    inset-inline-start: 1.5rem;
+  }
+  .lightbox__nav--next {
+    inset-inline-end: 1.5rem;
+  }
+}
+
+/* A photograph that fills the screen needs a real affordance that it can be
+   opened. Cursor plus a hairline that appears on hover, no overlay icon. */
+.shot {
+  cursor: zoom-in;
+}
+
+/* ---- navigation bar: deep blue glass ---------------------------------
+   The scrolled header state. Replaces a solid gold band.
+
+   Two layers, deliberately:
+   - `background-color` at 88% alpha, so the facade photography and the hero
+     video underneath stay faintly present and in motion. Fully opaque reads
+     as a panel bolted on top of the page; this reads as glass over it.
+   - `backdrop-filter: blur(14px) saturate(140%)`. The blur is what stops the
+     content behind turning the nav type into noise, and the saturation boost
+     keeps the blue from going muddy grey once blurred.
+
+   `navy-800 #10294a` rather than the near-black `navy-950`: at 88% over a
+   bright photograph, 950 collapses to a flat black strip, while 800 keeps a
+   readable blue cast and still carries white type at well past AA.
+
+   The `supports` guard is load-bearing, not decoration. Without
+   backdrop-filter (older Safari, Firefox with the flag off) 88% alpha alone
+   lets a busy photograph read straight through and the links become
+   illegible, so those browsers get an opaque bar instead of a broken one.
+   -------------------------------------------------------------------- */
+.nav-glass {
+  background-color: color-mix(in srgb, var(--color-navy-800) 88%, transparent);
+}
+
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  .nav-glass {
+    -webkit-backdrop-filter: blur(14px) saturate(140%);
+    backdrop-filter: blur(14px) saturate(140%);
+  }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .nav-glass {
+    background-color: var(--color-navy-800);
+  }
+}
+
+/* ---- navigation bar: unscrolled state -------------------------------
+   At the top of the page the bar is transparent so the hero reads full
+   height. That is only safe if something guarantees contrast underneath the
+   links, and on this site nothing did.
+
+   The hero's own scrim is DIRECTIONAL: navy at 85% on the left where the
+   headline sits, falling to 25% on the right. The nav links sit on the
+   right, in the weakest part of it. Measured against all 288 frames of the
+   hero clip, four of the five links failed AA, worst 1.70:1 on "Projects".
+
+   So this adds a separate top-down veil that belongs to the header rather
+   than the hero: opaque enough at the very top to carry 13.5px type, gone by
+   the bottom edge so it never reads as a band. It is drawn behind the
+   content (`z-index: -1`) and inside the header's own stacking context, so
+   it cannot cover the links or intercept clicks.
+   -------------------------------------------------------------------- */
+.nav-veil {
+  position: fixed;
+  isolation: isolate;
+}
+
+.nav-veil::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  /* The stops are solved, not eyeballed.
+     The link glyph ink occupies 40% to 64% of the header's height. A gradient
+     that fades from 78% to transparent across the full height is only about
+     36% opaque through that band, which measured 3.21:1 on "Projects" and
+     failed. Solving for the alpha each link needs against the brightest frame
+     of the hero clip gave a maximum requirement of 0.519, so the ramp now
+     holds 62% down to 72% of the height (0.64 to 0.70 through the ink band,
+     comfortably above the requirement) before falling away. It still reaches
+     transparent at the bottom edge, so it reads as a soft darkening of the
+     top of the hero rather than as a bar. */
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-navy-950) 80%, transparent),
+    color-mix(in srgb, var(--color-navy-950) 62%, transparent) 72%,
+    transparent
+  );
+}
+
+/* ---- scroll reveal (restrained: 14px lift, fast, one-shot) ---- */
 .reveal {
   opacity: 0;
-  transform: translateY(26px);
+  transform: translateY(14px);
   transition:
-    opacity 0.8s var(--ease-out-expo),
-    transform 0.8s var(--ease-out-expo);
+    opacity 0.55s var(--ease-out-expo),
+    transform 0.55s var(--ease-out-expo);
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
 }
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* ---- flagship reference list -----------------------------------------
+   Replaces a three-column table. Each entry is one credential: project name
+   leads, main contractor is the credit beneath it, location is quiet
+   metadata pinned to the right on wide screens.
+
+   Structure is hairline rules and proximity, not cards. The type does the
+   hierarchy work: 21px display name, 15px credit, 13px mono place. That
+   difference is what a table could not give, because a cell grid forces all
+   three values to the same visual weight.
+   -------------------------------------------------------------------- */
+.ref-list {
+  border-top: 1px solid var(--color-steel-300);
+}
+
+.ref-list__item {
+  display: grid;
+  /* Index column is fixed so every project name starts on the same edge. */
+  grid-template-columns: 2.5rem 1fr;
+  gap: 0 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--color-steel-200);
+  /* The reveal transition has to be re-declared here, not just the hover one.
+     `.reveal` and `.ref-list__item` have equal specificity and this rule comes
+     later in the sheet, so a bare `transition: background-color ...` shorthand
+     would reset the opacity/transform transition AND the stagger delay, and the
+     rows would snap in with no fade. Verified: delays read 0s before this fix. */
+  transition:
+    opacity 0.55s var(--ease-out-expo),
+    transform 0.55s var(--ease-out-expo),
+    background-color 0.25s ease-out;
+  /* Stagger applies to the entrance only; hover must stay instant. */
+  transition-delay: var(--reveal-delay, 0ms), var(--reveal-delay, 0ms), 0ms;
+}
+
+@media (min-width: 768px) {
+  .ref-list__item {
+    /* Place moves into its own column and the row becomes scannable across:
+       number, project + credit, location. */
+    grid-template-columns: 2.5rem 1fr 14rem;
+    align-items: baseline;
+    padding: 1.75rem 0;
+  }
+}
+
+/* Hover tints the whole entry and marks it with a gold edge. Bled out to the
+   container edges with negative margin so the tint reads as a full-width band
+   rather than a floating box. */
+@media (hover: hover) {
+  .ref-list__item {
+    margin-inline: -1rem;
+    padding-inline: 1rem;
+  }
+  .ref-list__item:hover {
+    background-color: color-mix(in srgb, var(--color-gold-500) 5%, transparent);
+    box-shadow: inset 2px 0 0 0 var(--color-gold-500);
+  }
+}
+
+.ref-list__index {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  /* gold-700, which clears 4.5:1 on both white and steel-50. */
+  color: var(--color-gold-700);
+  /* Optical alignment: the mono digits sit high against a 21px display name. */
+  padding-top: 0.35rem;
+}
+
+.ref-list__name {
+  font-family: var(--font-display);
+  font-size: 1.3125rem;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--color-navy-950);
+  text-wrap: balance;
+}
+
+@media (min-width: 768px) {
+  .ref-list__name {
+    font-size: 1.5rem;
+  }
+}
+
+.ref-list__credit {
+  margin-top: 0.4rem;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--color-steel-500);
+  max-width: 46ch;
+}
+
+.ref-list__place {
+  /* Mobile: sits under the credit, indented to the name's edge so the three
+     values still read as one entry. */
+  grid-column: 2;
+  margin-top: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--color-steel-500);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (min-width: 768px) {
+  .ref-list__place {
+    grid-column: 3;
+    margin-top: 0;
+    text-align: right;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -74,6 +741,35 @@ body {
   html {
     scroll-behavior: auto;
   }
+  .img-zoom img {
+    transition: none;
+  }
+  /* Route changes land instantly for anyone who has asked the system to
+     reduce motion. `animation: none` also cancels the fill-mode, so no
+     residual scale() transform is left on the wrapper. */
+  .page-in {
+    animation: none;
+  }
+  /* The progress sweep is pure motion with no informational content of its
+     own, so it is removed entirely rather than shortened. */
+  .route-sweep {
+    animation: none;
+    display: none;
+  }
+  /* The viewer still opens and closes; it just does not animate in. Opacity
+     and transform are pinned to their end state because the keyframes use
+     `both` fill mode, and without this the figure would stay at the
+     from-state (opacity 0) once the animation is cancelled. */
+  .lightbox,
+  .lightbox__figure {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .lightbox__btn,
+  .lightbox__nav {
+    transition: none;
+  }
 }
 
 /* ---- slow image zoom on hover ---- */
@@ -81,22 +777,10 @@ body {
   overflow: hidden;
 }
 .img-zoom img {
-  transition: transform 1.1s var(--ease-out-expo);
+  transition: transform 0.9s var(--ease-out-expo);
 }
 .img-zoom:hover img {
-  transform: scale(1.07);
-}
-
-/* ---- card hover lift ---- */
-.card-lift {
-  transition:
-    transform 0.5s var(--ease-out-expo),
-    box-shadow 0.5s var(--ease-out-expo),
-    border-color 0.5s var(--ease-out-expo);
-}
-.card-lift:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 48px -16px rgb(7 22 39 / 0.18);
+  transform: scale(1.04);
 }
 
 /* ---- underline link animation ---- */
@@ -108,14 +792,143 @@ body {
   position: absolute;
   left: 0;
   bottom: -4px;
-  height: 2px;
+  height: 1px;
   width: 100%;
   background: currentColor;
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.45s var(--ease-out-expo);
+  transition: transform 0.4s var(--ease-out-expo);
 }
 .link-slide:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+}
+
+/* ---- buttons: one canonical geometry -------------------------------
+   Every call-to-action on the site shares this box so the same label
+   never renders at three different sizes. 48px tall, which also clears
+   the 44px minimum touch target.
+   -------------------------------------------------------------------- */
+.btn {
+  @apply inline-flex h-12 shrink-0 items-center justify-center gap-2.5 px-7
+    text-sm font-semibold uppercase leading-none tracking-wide;
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo),
+    border-color 0.25s var(--ease-out-expo),
+    transform 0.12s ease-out;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn:disabled {
+  @apply cursor-not-allowed opacity-60;
+}
+
+/* Primary: the single quote action. Gold on navy or white. */
+.btn-primary {
+  @apply bg-gold-500 text-navy-950 hover:bg-gold-400;
+}
+
+/* On a gold ground the primary inverts to navy so it stays legible. */
+.btn-invert {
+  @apply bg-navy-950 text-white hover:bg-navy-800;
+}
+
+/* Secondary: outlined, same box, so pairs sit on one baseline. */
+/* border-white/55, not /30. This button sits on the hero video, and WCAG
+   1.4.11 wants 3:1 for the visual boundary of a control. Measured against all
+   288 frames of the hero clip, /30 bottomed out at 2.08:1 where the footage
+   brightens behind the button (peak video grey 208 under a 0.64 scrim). The
+   alpha needed to clear 3:1 against that backdrop is about 0.48, so /55
+   carries a margin. On the solid navy CTA band the backdrop is far darker, so
+   raising the alpha only makes the edge crisper there. */
+.btn-outline {
+  @apply border border-white/55 text-white hover:border-gold-500 hover:text-gold-500;
+}
+.btn-outline-dark {
+  @apply border border-navy-950/25 text-navy-950 hover:border-gold-700 hover:text-gold-700;
+}
+
+/* ---- legal / policy page prose --------------------------------------
+   Scoped typographic defaults so the policy pages read as documents
+   without needing a utility class on every element.
+   -------------------------------------------------------------------- */
+.legal-prose h2 {
+  @apply font-display mt-12 text-xl font-bold uppercase tracking-tight text-navy-950 md:text-2xl;
+}
+.legal-prose h2:first-child {
+  @apply mt-0;
+}
+.legal-prose h3 {
+  @apply mt-8 text-base font-semibold text-navy-950;
+}
+.legal-prose p {
+  @apply mt-4 leading-relaxed;
+}
+.legal-prose ul {
+  @apply mt-4 space-y-2.5;
+}
+.legal-prose li {
+  @apply relative pl-5 leading-relaxed;
+}
+.legal-prose li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 7px;
+  height: 1px;
+  background: var(--color-gold-500);
+}
+.legal-prose a {
+  @apply font-medium text-navy-950 underline decoration-gold-500 decoration-2 underline-offset-2 hover:text-gold-700;
+}
+.legal-prose dl {
+  @apply mt-5 grid gap-x-8 gap-y-3 sm:grid-cols-[12rem_1fr];
+}
+.legal-prose dt {
+  @apply font-mono text-[12px] font-medium uppercase tracking-[0.16em] text-steel-500;
+}
+.legal-prose dd {
+  @apply text-navy-950;
+}
+
+/* ---- tactile press feedback on every interactive control ---- */
+.press {
+  transition:
+    background-color 0.25s var(--ease-out-expo),
+    color 0.25s var(--ease-out-expo),
+    border-color 0.25s var(--ease-out-expo),
+    transform 0.12s ease-out;
+}
+.press:active {
+  transform: translateY(1px);
+}
+
+/* ---- long-form legal copy (privacy, terms, cookies) ---- */
+.prose-legal {
+  @apply max-w-[68ch] leading-relaxed;
+}
+.prose-legal h2 {
+  @apply font-display mt-12 text-xl font-bold uppercase tracking-tight text-navy-950;
+}
+.prose-legal h3 {
+  @apply mt-8 font-semibold text-navy-950;
+}
+.prose-legal p {
+  @apply mt-4;
+}
+.prose-legal ul {
+  @apply mt-4 space-y-2;
+}
+.prose-legal li {
+  @apply flex gap-3;
+}
+.prose-legal li::before {
+  content: '';
+  @apply mt-2.5 h-1 w-1 shrink-0 bg-gold-500;
+}
+.prose-legal a {
+  @apply font-medium text-navy-950 underline decoration-gold-500 decoration-2 underline-offset-2 hover:text-gold-700;
 }

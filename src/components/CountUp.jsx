@@ -1,15 +1,22 @@
 import { useEffect, useRef, useState } from 'react'
 
-// Counts up to `value` when scrolled into view. `value` like "245" or "15".
-export default function CountUp({ value, suffix = '', duration = 1800, className = '' }) {
+// Counts up to `value` when scrolled into view.
+//
+// The real figure is in the DOM from first paint, so crawlers, AI systems and
+// no-JS visitors read "245+" rather than the "0+" this component used to emit.
+// The animation only kicks in when the strip actually enters the viewport,
+// which is below the fold on every page that uses it.
+export default function CountUp({ value, duration = 1500, className = '' }) {
   const ref = useRef(null)
-  const [display, setDisplay] = useState(0)
   const target = parseInt(String(value).replace(/\D/g, ''), 10) || 0
-  const finalSuffix = suffix || String(value).replace(/[0-9]/g, '')
+  const suffix = String(value).replace(/[0-9]/g, '')
+  const [display, setDisplay] = useState(target)
 
   useEffect(() => {
     const el = ref.current
     if (!el) return
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
     let raf
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -29,14 +36,14 @@ export default function CountUp({ value, suffix = '', duration = 1800, className
     io.observe(el)
     return () => {
       io.disconnect()
-      cancelAnimationFrame(raf)
+      if (raf) cancelAnimationFrame(raf)
     }
   }, [target, duration])
 
   return (
     <span ref={ref} className={className}>
       {display}
-      {finalSuffix}
+      {suffix}
     </span>
   )
 }

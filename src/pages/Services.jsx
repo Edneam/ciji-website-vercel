@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Check } from '@phosphor-icons/react'
 import PageHeader from '../components/PageHeader.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
@@ -13,13 +13,18 @@ const servicesSchema = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://cijialuminium.com/services' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Services',
+        item: 'https://cijialuminium.com/services',
+      },
     ],
   },
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'Aluminium and Glass Façade Contracting',
+    serviceType: 'Aluminium and Glass Facade Contracting',
     provider: {
       '@type': 'Organization',
       name: 'Ciji Bldg. Metalic Const. Ind. LLC',
@@ -40,11 +45,14 @@ const servicesSchema = [
   },
 ]
 
-const featured = [
+/* The six envelope systems, each with what the scope actually covers.
+   Scope points are a real sequence (design, fabricate, install), so the
+   ordered list carries information rather than decorating the section. */
+const envelope = [
   {
     ...services[0],
     image: '/images/projects/ic3-tower.jpg',
-    points: [
+    scope: [
       'System design and thermal performance engineering',
       'In-house fabrication of mullions, transoms and panels',
       'Site installation, sealing and quality testing',
@@ -53,16 +61,16 @@ const featured = [
   {
     ...services[1],
     image: '/images/projects/pantheon.jpg',
-    points: [
+    scope: [
       'Point-fixed spider fitting systems',
       'Glass fin and steel support structures',
-      'Tension rods and cable truss façades',
+      'Tension rod and cable truss facades',
     ],
   },
   {
     ...services[2],
     image: '/images/projects/enviroserve.jpg',
-    points: [
+    scope: [
       'Aluminium-framed skylight systems',
       'Steel-structure skylights for large spans',
       'Weather-tight, thermally efficient glazing',
@@ -71,7 +79,7 @@ const featured = [
   {
     ...services[3],
     image: '/images/projects/warehouse-large.jpg',
-    points: [
+    scope: [
       'Long-span aluminium and steel structures',
       'Roof and atrium feature architecture',
       'Lightweight modular assembly',
@@ -80,7 +88,7 @@ const featured = [
   {
     ...services[4],
     image: '/images/projects/titan-building.jpg',
-    points: [
+    scope: [
       'ACP cladding systems',
       'Precision-fabricated aluminium panels',
       'Exterior envelopes and architectural features',
@@ -89,7 +97,7 @@ const featured = [
   {
     ...services[5],
     image: '/images/projects/mag-building.jpg',
-    points: [
+    scope: [
       'Frameless glass partition systems',
       'Framed partition systems for offices',
       'Light-filled, contemporary interiors',
@@ -97,13 +105,9 @@ const featured = [
   },
 ]
 
-const more = services.slice(6)
-
-const related = [
-  { label: 'Our Projects', to: '/projects', image: '/images/projects/ohana-building.jpg' },
-  { label: 'About Us', to: '/about', image: '/images/projects/jvt-residential.jpg' },
-  { label: 'Get a Quote', to: '/contact', image: '/images/projects/umm-al-shaif.jpg' },
-]
+/* Metalwork and access products: same trade, different scope. Grouped
+   rather than presented as six more identical cards. */
+const metalwork = services.slice(6)
 
 export default function Services() {
   return (
@@ -114,117 +118,149 @@ export default function Services() {
         path="/services"
         schema={servicesSchema}
       />
-      <PageHeader title="Our Services" crumb="Services" image="/images/projects/dubai-walls.jpg" />
+      <PageHeader
+        title="Services"
+        crumb="Services"
+        lead="Twelve product lines across the building envelope, all designed, fabricated and installed by our own teams."
+        image="/images/projects/dubai-walls.jpg"
+      />
 
-      {/* intro */}
+      {/* ---- Envelope systems: full-bleed image with the scope beside it.
+              Alternation is capped at two consecutive splits, then the
+              layout family changes below. ---- */}
       <section className="py-20 md:py-24">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              kicker="What We Do"
-              title="Our Services"
-              sub="Ciji Bldg. Metalic Const. Ind. LLC offers a comprehensive range of aluminium and glass services to meet your project needs — from initial concept to final installation. Our experienced team is dedicated to exceptional service and complete satisfaction."
+              title="Facade systems we engineer"
+              sub="Each building-envelope package is quoted as one scope: system design, shop fabrication and site installation under a single contract."
             />
           </Reveal>
         </div>
-      </section>
 
-      {/* featured services — alternating sections */}
-      {featured.map((s, i) => {
-        const flip = i % 2 === 1
-        return (
-          <section key={s.title} className={i % 2 === 1 ? 'bg-slate-50 py-16 md:py-24' : 'py-16 md:py-24'}>
-            <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-              <Reveal className={flip ? 'lg:order-2' : ''}>
-                <div className="relative">
-                  <span
-                    className={`absolute -top-4 hidden h-full w-full border-4 border-gold-400 md:block ${
-                      flip ? '-right-4' : '-left-4'
-                    }`}
-                  />
+        <div className="container-x mt-16 space-y-20 md:mt-20 md:space-y-24">
+          {envelope.slice(0, 2).map((s, i) => {
+            const flip = i % 2 === 1
+            return (
+              <div
+                key={s.title}
+                className="grid items-center gap-10 lg:grid-cols-[1.1fr_1fr] lg:gap-16"
+              >
+                <Reveal className={`img-zoom ${flip ? 'lg:order-2' : ''}`}>
                   <img
                     src={s.image}
-                    alt={`${s.title} installation by CIJI Aluminium`}
+                    alt={`${s.title} installed by CIJI on a UAE project`}
                     loading="lazy"
-                    width="800"
-                    height="600"
-                    className="img-zoom relative aspect-[4/3] w-full object-cover shadow-xl"
+                    width="900"
+                    height="675"
+                    className="aspect-[4/3] w-full object-cover"
                   />
-                </div>
-              </Reveal>
-              <Reveal delay={120} className={flip ? 'lg:order-1' : ''}>
-                <div className="flex items-baseline gap-4">
-                  <span className="font-display text-6xl font-extrabold leading-none text-gold-500/30">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <h2 className="font-display text-2xl font-bold uppercase tracking-wide text-navy-900 md:text-3xl">
+                </Reveal>
+                <Reveal delay={100} className={flip ? 'lg:order-1' : ''}>
+                  <h3 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-navy-950 md:text-3xl">
                     {s.title}
-                  </h2>
-                </div>
-                <p className="mt-5 leading-relaxed">{s.desc}</p>
-                <ol className="mt-6 space-y-2.5 text-sm marker:font-bold marker:text-gold-600 list-decimal pl-5">
-                  {s.points.map((pt) => (
-                    <li key={pt} className="pl-1">{pt}</li>
-                  ))}
-                </ol>
-              </Reveal>
-            </div>
-          </section>
-        )
-      })}
+                  </h3>
+                  <p className="mt-4 max-w-[58ch] leading-relaxed">{s.desc}</p>
+                  <ol className="mt-7 space-y-0 border-t border-steel-200">
+                    {s.scope.map((pt, n) => (
+                      <li
+                        key={pt}
+                        className="flex gap-5 border-b border-steel-200 py-3.5 text-sm"
+                      >
+                        <span className="font-mono text-xs text-steel-500">
+                          {String(n + 1).padStart(2, '0')}
+                        </span>
+                        <span className="text-steel-600">{pt}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </Reveal>
+              </div>
+            )
+          })}
+        </div>
+      </section>
 
-      {/* remaining services */}
-      <section className="bg-slate-50 py-20 md:py-24">
+      {/* ---- Remaining envelope systems: image-topped columns. Different
+              layout family, so the zigzag does not run past two. ---- */}
+      <section className="border-y border-steel-200 bg-steel-50 py-20 md:py-24">
         <div className="container-x">
-          <Reveal>
-            <SectionHeading
-              kicker="Complete Solutions"
-              title="More Of What We Build"
-              sub="Beyond the façade — a full range of aluminium and steel products, all fabricated and installed by our own teams."
-            />
-          </Reveal>
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {more.map((s, i) => (
-              <Reveal key={s.title} delay={(i % 3) * 90}>
-                <div className="card-lift group relative h-full border border-slate-200 border-t-4 border-t-navy-900 bg-white p-7 shadow-sm hover:border-t-gold-500">
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center bg-navy-900 text-gold-400 transition-colors duration-300 group-hover:bg-gold-500 group-hover:text-navy-950">
-                      <ServiceIcon index={i + 6} size={24} />
-                    </div>
-                    <span className="font-display text-5xl font-extrabold text-slate-100 transition-colors duration-300 group-hover:text-gold-400/40">
-                      {String(i + 7).padStart(2, '0')}
-                    </span>
+          <div className="grid gap-x-10 gap-y-14 md:grid-cols-2">
+            {envelope.slice(2).map((s, i) => (
+              <Reveal key={s.title} delay={(i % 2) * 90}>
+                <article>
+                  <div className="img-zoom">
+                    <img
+                      src={s.image}
+                      alt={`${s.title} installed by CIJI on a UAE project`}
+                      loading="lazy"
+                      width="760"
+                      height="500"
+                      className="aspect-[3/2] w-full object-cover"
+                    />
                   </div>
-                  <h3 className="font-display mt-5 text-lg font-bold text-navy-900">{s.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed">{s.desc}</p>
-                </div>
+                  <h3 className="font-display mt-6 text-xl font-bold uppercase tracking-tight text-navy-950">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 max-w-[54ch] text-sm leading-relaxed">{s.desc}</p>
+                  <ul className="mt-5 space-y-2">
+                    {s.scope.map((pt) => (
+                      <li key={pt} className="flex gap-3 text-sm text-steel-600">
+                        <Check
+                          size={16}
+                          weight="bold"
+                          className="mt-1 shrink-0 text-gold-700"
+                          aria-hidden="true"
+                        />
+                        <span>{pt}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
 
-      {/* related links */}
-      <section className="py-20 md:py-24">
-        <div className="container-x grid gap-6 md:grid-cols-3">
-          {related.map((r, i) => (
-            <Reveal key={r.label} delay={i * 100}>
-              <Link to={r.to} className="group relative block overflow-hidden">
-                <img
-                  src={r.image}
-                  alt={r.label}
-                  loading="lazy"
-                  width="600"
-                  height="450"
-                  className="img-zoom aspect-[4/3] w-full object-cover"
-                />
-                <div className="absolute inset-0 bg-navy-950/20 transition-colors duration-300 group-hover:bg-navy-950/35" />
-                <span className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-white px-8 py-3 text-sm font-bold uppercase tracking-wide text-navy-900 shadow-lg transition-colors duration-300 group-hover:bg-gold-500 group-hover:text-navy-950">
-                  {r.label}
-                </span>
-              </Link>
-            </Reveal>
-          ))}
+      {/* ---- Metalwork: a dense reference list on dark ground. Third
+              distinct layout family on the page. ---- */}
+      <section className="bg-navy-950 py-20 md:py-24">
+        <div className="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+          <Reveal>
+            {/* No CTA button in this section. The CtaBand at the foot of the
+                page already carries "Request a Quote" on the same navy ground,
+                about one screen below, so this was the same action asked twice
+                in the same colour within one scroll. The section's job is to
+                show the product range; the page has one closing ask. */}
+            <SectionHeading
+              title="Metalwork and access products"
+              sub="Beyond the facade line: balustrades, gates, canopies and door systems, fabricated in the same workshop and installed by the same crews."
+              light
+            />
+          </Reveal>
+
+          <div className="grid gap-x-10 sm:grid-cols-2">
+            {metalwork.map((s, i) => (
+              <Reveal key={s.title} delay={(i % 2) * 70}>
+                <article className="border-t border-white/10 py-6">
+                  <div className="flex items-start gap-4">
+                    <ServiceIcon
+                      index={i + 6}
+                      size={22}
+                      className="mt-0.5 shrink-0 text-gold-500"
+                    />
+                    <div>
+                      <h3 className="font-display text-base font-semibold text-white">
+                        {s.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-relaxed text-steel-300">{s.desc}</p>
+                    </div>
+                  </div>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 

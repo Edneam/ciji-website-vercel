@@ -5,7 +5,7 @@ export const services = [
   },
   {
     title: 'Spider Glazing',
-    desc: 'Frameless point-fixed glass façades using spider fittings — with glass fins, steel structures or tension rods and cables.',
+    desc: 'Frameless point-fixed glass facades using spider fittings, supported on glass fins, steel structures or tension rods and cables.',
   },
   {
     title: 'Skylights',
@@ -33,7 +33,7 @@ export const services = [
   },
   {
     title: 'Gates',
-    desc: 'Fabricated aluminium and steel gates — sliding, swing and automated — built for villas, compounds and industry.',
+    desc: 'Fabricated aluminium and steel gates in sliding, swing and automated configurations, built for villas, compounds and industrial sites.',
   },
   {
     title: 'Canopies',
@@ -45,6 +45,6 @@ export const services = [
   },
   {
     title: 'Doors & Windows',
-    desc: 'Complete range of aluminium doors and windows — sliding, fixed, casement and thermally broken systems.',
+    desc: 'Complete range of aluminium doors and windows: sliding, fixed, casement and thermally broken systems.',
   },
 ]
