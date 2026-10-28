@@ -1,146 +1,229 @@
 import { Link } from 'react-router-dom'
-import { Phone, EnvelopeSimple, MapPin, Clock, ArrowUp } from '@phosphor-icons/react'
-import { company } from '../data/site.js'
+import {
+  ArrowUp,
+  FacebookLogo,
+  InstagramLogo,
+  LinkedinLogo,
+  WhatsappLogo,
+  XLogo,
+  YoutubeLogo,
+} from '@phosphor-icons/react'
+import { company, socials } from '../data/site.js'
+import { serviceSlug } from '../data/services.js'
 
-// Footer: 3 zones instead of the 4-column link farm. Contact detail is the
-// primary job here for a contractor, so it leads. Legal links added (were
-// missing entirely).
+const legalLinks = [
+  { to: '/privacy', label: 'Privacy Policy' },
+  { to: '/cookies', label: 'Cookie Notice' },
+  { to: '/terms', label: 'Terms of Use' },
+]
+
+const pageLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/about', label: 'About' },
+  { to: '/services', label: 'Services' },
+  { to: '/projects', label: 'Projects' },
+  { to: '/contact', label: 'Contact' },
+]
+
+const serviceLinks = [
+  { title: 'Structural Glazing & Curtain Walling', label: 'Curtain walling' },
+  { title: 'Spider Glazing', label: 'Spider glazing' },
+  { title: 'Aluminium Cladding', label: 'Aluminium cladding' },
+].map((item) => ({
+  to: `/services#${serviceSlug(item.title)}`,
+  label: item.label,
+}))
+
+// Plain-text summary for the About column. These are the scopes the company
+// actually lists on /services — not a second set of links, so the footer does
+// not compete with the Quick links column.
+const capabilities = [
+  'Curtain walling',
+  'Structural glazing',
+  'Spider glazing',
+  'Aluminium cladding',
+  'Skylights',
+  'Glass partitions',
+]
+
+const glyphs = {
+  facebook: FacebookLogo,
+  instagram: InstagramLogo,
+  linkedin: LinkedinLogo,
+  x: XLogo,
+  youtube: YoutubeLogo,
+  whatsapp: WhatsappLogo,
+}
+
+const visibleSocials = socials.filter(
+  (item) => typeof item.href === 'string' && item.href.trim() && glyphs[item.platform],
+)
+
+const linkClass =
+  'link-slide inline-flex min-h-11 items-center text-sm text-[var(--footer-ink)] hover:text-[var(--footer-hover)]'
+
+const labelClass =
+  'font-mono text-xs font-medium uppercase tracking-[0.16em] text-[var(--footer-muted)]'
+
 export default function Footer() {
   return (
-    // Deep blue, matching the CTA band and the navigation glass, instead of the
-    // near-black navy-950 this used to be.
-    //
-    // With the CTA recoloured to navy-800/900 and this left at navy-950, the two
-    // met in a hard full-width tonal step: a lighter blue block sitting on a
-    // near-black one, with nothing marking the boundary as intentional.
-    //
-    // Now the footer starts at navy-900, the same tone the CTA gradient ends on,
-    // and deepens to navy-950 by the bottom of the page. That gives the page a
-    // settle rather than a step, and keeps the darkest tone under the legal
-    // strip where it belongs. The gold hairline is what separates the two bands
-    // now: a deliberate 1px rule instead of an accidental colour jump.
-    <footer className="border-t border-gold-500/25 bg-gradient-to-b from-navy-900 to-navy-950 text-steel-300">
-      <div className="container-x grid gap-12 py-16 lg:grid-cols-[1.4fr_1fr_1.2fr] lg:gap-16">
-        {/* identity */}
-        <div>
-          {/* The mark is filtered to white, not sat on a white plate.
-              It used to be the original artwork inside `bg-white px-3 py-2`,
-              which was the single brightest object on the page: measured pure
-              255,255,255 against a footer around 10,30,52. On the old
-              near-black footer it read as a deliberate badge; against the new
-              blue it reads as an unstyled box pasted on, and it was bright
-              enough that a seam detector picked it out as the strongest
-              horizontal step in the whole CTA-plus-footer region.
-
-              `brightness-0 invert` is exactly what the navbar already does to
-              the same file, so the mark now matches itself in both places. */}
-          <img
-            src="/images/logo.png"
-            alt={company.name}
-            width="160"
-            height="40"
-            className="h-10 w-auto brightness-0 invert"
-          />
-          <p className="mt-5 max-w-sm text-sm leading-relaxed">
-            {company.group}, comprising {company.name} and {company.sisterCompany}. Over a decade
-            of aluminium and glass fabrication for building and infrastructure projects across the
-            UAE.
+    <footer className="site-footer">
+      <div className="container-x grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[minmax(0,26rem)_minmax(0,1fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-x-12 lg:py-20">
+        <div className="sm:col-span-2 lg:col-span-1">
+          <div className="flex items-center gap-3">
+            <img
+              src="/images/logo-mark.png?v=3"
+              alt=""
+              width={256}
+              height={217}
+              translate="no"
+              loading="lazy"
+              className="h-12 w-auto"
+            />
+            <p className="font-display text-lg font-bold leading-tight text-[var(--footer-ink)]" translate="no">
+              {company.name}
+            </p>
+          </div>
+          <h2 className="mt-5 font-display text-lg font-bold leading-tight text-[var(--footer-ink)]">About</h2>
+          <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-[var(--footer-muted)]">
+            Part of the <span translate="no">{company.group}</span>, alongside{' '}
+            <span translate="no">{company.sisterCompany}</span>. For over a decade we designed,
+            fabricated and installed aluminium and glass for UAE building and infrastructure
+            projects, from our Sharjah workshop.
           </p>
-        </div>
+          <p className="mt-3 max-w-[42ch] text-sm leading-relaxed text-[var(--footer-muted)]">
+            We work as a specialist facade subcontractor to main contractors and government
+            authorities, with design, fabrication and installation held under one contract.
+          </p>
 
-        {/* navigation */}
-        <div>
-          <h2 className="spec-label text-steel-300">Site</h2>
-          <nav aria-label="Footer">
-            <ul className="mt-4 space-y-2.5 text-sm">
-              {[
-                { to: '/', label: 'Home' },
-                { to: '/about', label: 'About Us' },
-                { to: '/services', label: 'Services' },
-                { to: '/projects', label: 'Projects' },
-                { to: '/contact', label: 'Contact' },
-              ].map((l) => (
-                <li key={l.to}>
-                  <Link to={l.to} className="transition-colors hover:text-gold-500">
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </div>
-
-        {/* contact */}
-        <div>
-          <h2 className="spec-label text-steel-300">Contact</h2>
-          <ul className="mt-4 space-y-3 text-sm">
-            <li>
-              <a
-                href={company.phoneHref}
-                className="flex items-center gap-3 transition-colors hover:text-gold-500"
-              >
-                <Phone size={17} weight="regular" className="shrink-0 text-gold-500" />
-                <span className="font-mono">{company.phone}</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href={`mailto:${company.email}`}
-                className="flex items-center gap-3 transition-colors hover:text-gold-500"
-              >
-                <EnvelopeSimple size={17} weight="regular" className="shrink-0 text-gold-500" />
-                <span className="font-mono">{company.email}</span>
-              </a>
-            </li>
-            <li className="flex items-center gap-3">
-              <Clock size={17} weight="regular" className="shrink-0 text-gold-500" />
-              {company.hours}
-            </li>
-          </ul>
-
-          <ul className="mt-6 space-y-4 border-t border-white/10 pt-5 text-sm">
-            {company.offices.map((o) => (
-              <li key={o.city} className="flex gap-3">
-                <MapPin size={17} weight="regular" className="mt-0.5 shrink-0 text-gold-500" />
-                <span>
-                  <span className="block font-semibold text-white">{o.city}</span>
-                  {o.lines.map((line) => (
-                    <span key={line} className="block text-steel-400">
-                      {line}
-                    </span>
-                  ))}
-                </span>
-              </li>
+          <p className={`${labelClass} mt-6`}>Capabilities</p>
+          <ul className="mt-2 grid max-w-[42ch] grid-cols-2 gap-x-6 gap-y-1 text-sm text-[var(--footer-muted)]">
+            {capabilities.map((item) => (
+              <li key={item}>{item}</li>
             ))}
           </ul>
+        </div>
 
-          <Link
-            to="/contact"
-            className="btn btn-primary mt-6"
-          >
+        <div>
+          <h2 className="font-display text-lg font-bold leading-tight text-[var(--footer-ink)]">Contact</h2>
+          {/* One vertical rhythm through the whole column. Each link keeps its
+              44px touch target, and its `dd` is a flex box so that target is
+              exactly 44px tall rather than picking up descender space from the
+              line box. With 6px between blocks and 24px before the button,
+              every gap in the column reads the same. */}
+          <dl className="mt-3 space-y-1.5">
+            <div>
+              <dt className={labelClass}>Telephone</dt>
+              <dd className="flex">
+                <a href={company.phoneHref} className={`${linkClass} font-semibold whitespace-nowrap`}>
+                  {company.phone}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className={labelClass}>Email</dt>
+              <dd className="flex">
+                <a href={`mailto:${company.email}`} className={`${linkClass} font-medium`}>
+                  {company.email}
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className={labelClass}>Office hours</dt>
+              <dd className="mt-1 text-sm font-medium text-[var(--footer-ink)]">{company.hours}</dd>
+            </div>
+          </dl>
+          <Link to="/contact" className="btn btn-primary mt-6">
             Request a Quote
           </Link>
         </div>
+
+        <nav aria-label="Footer">
+          <h2 className="font-display text-lg font-bold leading-tight text-[var(--footer-ink)]">Quick links</h2>
+          <ul className="mt-3 flex flex-col">
+            {pageLinks.map((item) => (
+              <li key={item.to}>
+                <Link to={item.to} className={linkClass}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <p className={`${labelClass} mt-4`}>Services</p>
+          <ul className="mt-1 flex flex-col">
+            {serviceLinks.map((item) => (
+              <li key={item.to}>
+                <Link to={item.to} className={linkClass}>
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="sm:col-span-2 lg:col-span-1">
+          <h2 className="font-display text-lg font-bold leading-tight text-[var(--footer-ink)]">Offices</h2>
+          <div className="mt-3 grid gap-6 sm:grid-cols-2 lg:grid-cols-1">
+            {company.offices.map((office) => (
+              <div key={office.city}>
+                <h3 className="font-display text-base font-bold leading-tight text-[var(--footer-ink)]">
+                  {office.city}
+                </h3>
+                <address className="mt-2 text-sm not-italic leading-relaxed text-[var(--footer-muted)]">
+                  {office.lines.map((line, index) => (
+                    <span key={line}>
+                      {index > 0 ? <br /> : null}
+                      {line}
+                    </span>
+                  ))}
+                </address>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="container-x flex flex-col items-center justify-between gap-3 py-5 text-xs sm:flex-row">
-          <p className="text-steel-400">
-            © {new Date().getFullYear()} {company.name}. All rights reserved.
+      {visibleSocials.length > 0 ? (
+        <div className="container-x pb-2">
+          <ul className="flex flex-wrap gap-2">
+            {visibleSocials.map((item) => {
+              const Icon = glyphs[item.platform]
+              return (
+                <li key={item.platform}>
+                  <a
+                    href={item.href}
+                    className="inline-flex h-11 w-11 items-center justify-center text-[var(--footer-ink)] hover:text-[var(--footer-hover)]"
+                    aria-label={item.label}
+                  >
+                    <Icon size={22} aria-hidden="true" />
+                  </a>
+                </li>
+              )
+            })}
+          </ul>
+        </div>
+      ) : null}
+
+      <div className="border-t border-[var(--footer-line)]">
+        <div className="container-x flex flex-col gap-3 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-[var(--footer-muted)]">
+            © {new Intl.DateTimeFormat('en', { year: 'numeric' }).format(new Date())}{' '}
+            <span translate="no">{company.name}</span>. All rights reserved.
           </p>
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-            <Link to="/privacy" className="text-steel-400 transition-colors hover:text-gold-500">
-              Privacy Policy
-            </Link>
-            <Link to="/cookies" className="text-steel-400 transition-colors hover:text-gold-500">
-              Cookie Notice
-            </Link>
-            <Link to="/terms" className="text-steel-400 transition-colors hover:text-gold-500">
-              Terms of Use
-            </Link>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+            {legalLinks.map((item) => (
+              <Link key={item.to} to={item.to} className={linkClass}>
+                {item.label}
+              </Link>
+            ))}
             <a
               href="#top"
-              className="flex items-center gap-2 text-steel-400 transition-colors hover:text-gold-500"
+              className={linkClass}
+              onClick={(e) => {
+                e.preventDefault()
+                const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+                window.scrollTo({ top: 0, left: 0, behavior: reduce ? 'instant' : 'smooth' })
+              }}
             >
               Back to top <ArrowUp size={13} weight="bold" aria-hidden="true" />
             </a>

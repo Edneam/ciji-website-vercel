@@ -3,9 +3,8 @@ import PageHeader from '../components/PageHeader.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
-import ServiceIcon from '../components/ServiceIcon.jsx'
 import Seo from '../components/Seo.jsx'
-import { services } from '../data/services.js'
+import { services, serviceSlug } from '../data/services.js'
 
 const servicesSchema = [
   {
@@ -27,7 +26,9 @@ const servicesSchema = [
     serviceType: 'Aluminium and Glass Facade Contracting',
     provider: {
       '@type': 'Organization',
+      '@id': 'https://cijialuminium.com/#organization',
       name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+      url: 'https://cijialuminium.com/',
     },
     areaServed: 'United Arab Emirates',
     hasOfferCatalog: {
@@ -113,9 +114,10 @@ export default function Services() {
   return (
     <>
       <Seo
-        title="Aluminium & Glass Services | Structural Glazing, Curtain Walls & Cladding UAE"
-        description="Comprehensive aluminium and glass contracting services in the UAE: structural glazing, curtain walling, spider glazing, skylights, space frames, ACP cladding, glass partitions, and automatic doors."
+        title="Glazing, Curtain Wall & Cladding Services | CIJI"
+        description="Aluminium and glass services in the UAE: structural glazing, curtain walling, spider glazing, skylights, space frames, ACP cladding, partitions, doors and handrails."
         path="/services"
+        lcpImage="/images/projects/dubai-walls.jpg"
         schema={servicesSchema}
       />
       <PageHeader
@@ -132,7 +134,7 @@ export default function Services() {
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Facade systems we engineer"
+              title="Facade Systems We Engineer"
               sub="Each building-envelope package is quoted as one scope: system design, shop fabrication and site installation under a single contract."
             />
           </Reveal>
@@ -157,7 +159,10 @@ export default function Services() {
                   />
                 </Reveal>
                 <Reveal delay={100} className={flip ? 'lg:order-1' : ''}>
-                  <h3 className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-navy-950 md:text-3xl">
+                  <h3
+                    id={serviceSlug(s.title)}
+                    className="font-display text-2xl font-bold uppercase leading-tight tracking-tight text-navy-950 md:text-3xl"
+                  >
                     {s.title}
                   </h3>
                   <p className="mt-4 max-w-[58ch] leading-relaxed">{s.desc}</p>
@@ -199,7 +204,10 @@ export default function Services() {
                       className="aspect-[3/2] w-full object-cover"
                     />
                   </div>
-                  <h3 className="font-display mt-6 text-xl font-bold uppercase tracking-tight text-navy-950">
+                  <h3
+                    id={serviceSlug(s.title)}
+                    className="font-display mt-6 text-xl font-bold uppercase tracking-tight text-navy-950"
+                  >
                     {s.title}
                   </h3>
                   <p className="mt-3 max-w-[54ch] text-sm leading-relaxed">{s.desc}</p>
@@ -223,40 +231,26 @@ export default function Services() {
         </div>
       </section>
 
-      {/* ---- Metalwork: a dense reference list on dark ground. Third
-              distinct layout family on the page. ---- */}
-      <section className="bg-navy-950 py-20 md:py-24">
-        <div className="container-x grid gap-12 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
+      <section className="py-20 md:py-24">
+        <div className="container-x">
           <Reveal>
-            {/* No CTA button in this section. The CtaBand at the foot of the
-                page already carries "Request a Quote" on the same navy ground,
-                about one screen below, so this was the same action asked twice
-                in the same colour within one scroll. The section's job is to
-                show the product range; the page has one closing ask. */}
             <SectionHeading
-              title="Metalwork and access products"
+              title="Metalwork and Access Products"
               sub="Beyond the facade line: balustrades, gates, canopies and door systems, fabricated in the same workshop and installed by the same crews."
-              light
             />
           </Reveal>
 
-          <div className="grid gap-x-10 sm:grid-cols-2">
+          <div className="mt-12 grid gap-x-12 md:grid-cols-2">
             {metalwork.map((s, i) => (
               <Reveal key={s.title} delay={(i % 2) * 70}>
-                <article className="border-t border-white/10 py-6">
-                  <div className="flex items-start gap-4">
-                    <ServiceIcon
-                      index={i + 6}
-                      size={22}
-                      className="mt-0.5 shrink-0 text-gold-500"
-                    />
-                    <div>
-                      <h3 className="font-display text-base font-semibold text-white">
-                        {s.title}
-                      </h3>
-                      <p className="mt-2 text-sm leading-relaxed text-steel-300">{s.desc}</p>
-                    </div>
-                  </div>
+                <article className="border-t border-steel-200 py-6">
+                  <h3
+                    id={serviceSlug(s.title)}
+                    className="font-display text-xl font-bold uppercase tracking-tight text-navy-950"
+                  >
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 max-w-[54ch] text-sm leading-relaxed">{s.desc}</p>
                 </article>
               </Reveal>
             ))}

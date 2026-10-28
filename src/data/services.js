@@ -48,3 +48,11 @@ export const services = [
     desc: 'Complete range of aluminium doors and windows: sliding, fixed, casement and thermally broken systems.',
   },
 ]
+
+export function serviceSlug(title) {
+  return title
+    .toLowerCase()
+    .replace(/&/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}

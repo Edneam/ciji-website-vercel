@@ -23,7 +23,7 @@ export default function App() {
       </a>
       <ScrollToTop />
       <Navbar />
-      <main id="main" className="flex-1">
+      <main id="main" tabIndex={-1} className="flex-1">
         {/* Both elements are keyed on the pathname, so React remounts them on
             every route change and their CSS animations replay. Without the key
             they would only ever run once, on first load.

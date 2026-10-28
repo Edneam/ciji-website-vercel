@@ -1,32 +1,15 @@
 import { Link } from 'react-router-dom'
-import { Check } from '@phosphor-icons/react'
+import { ArrowRight, Check } from '@phosphor-icons/react'
 import PageHeader from '../components/PageHeader.jsx'
 import StatsStrip from '../components/StatsStrip.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import Reveal from '../components/Reveal.jsx'
 import Seo from '../components/Seo.jsx'
-import { projects } from '../data/projects.js'
+import { company } from '../data/site.js'
+import { imageSlug, projects } from '../data/projects.js'
 
-/* Gallery built from the real project records, not /images/gallery.
-
-   The previous version mapped over 12 files in /images/gallery and labelled
-   each one "Completed aluminium and glass facade installation by CIJI, view N".
-   Those files are not photographs of installations: they are scanned pages from
-   a company profile, each collaging several photos together with white gutters,
-   and several carry other companies' signage across the facade (Black Bulls,
-   CPL Aroma, Morgan, Sanford, Citadines all appear). So the alt text asserted
-   something untrue about every one of them, and the page was showing third
-   parties' branding as CIJI's own work.
-
-   These are the same photographs the Projects page uses, and each one carries
-   its actual project name and location, so the caption is specific and
-   checkable instead of "view 7". */
-const gallery = projects.map((p) => ({
-  src: p.image,
-  title: p.title,
-  location: p.location,
-}))
+const highlights = projects.slice(0, 3)
 
 const aboutSchema = {
   '@context': 'https://schema.org',
@@ -67,9 +50,11 @@ export default function About() {
   return (
     <>
       <Seo
-        title="About Us | Ciji Bldg. Metalic Const. Ind. LLC, UAE Facade Contractor"
-        description="Ciji Bldg. Metalic Const. Ind. LLC and C.J Tec Contracting LLC form C.J Group of Companies, with over a decade of aluminium and glass fabrication, structural glazing and curtain walling experience in the UAE."
+        title="About CIJI | UAE Aluminium & Glass Contractor"
+        description="Ciji Bldg. Metalic Const. Ind. LLC and C.J Tec Contracting LLC form C.J Group of Companies, with over a decade of aluminium and glass facade work in the UAE."
         path="/about"
+        lcpImage="/images/projects/jvt-residential.jpg"
+        pageType="AboutPage"
         schema={aboutSchema}
       />
       <PageHeader
@@ -84,14 +69,14 @@ export default function About() {
         <div className="container-x grid items-start gap-14 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
           <div>
             <Reveal>
-              <SectionHeading title="Over a decade on UAE building envelopes" />
+              <SectionHeading title="Over a Decade on UAE Building Envelopes" />
             </Reveal>
             <Reveal delay={100}>
               <div className="mt-7 space-y-5 leading-relaxed">
                 <p>
-                  We are pleased to introduce ourselves as <strong>C.J Group of Companies</strong>,
-                  comprising <strong>Ciji Bldg. Metalic Const. Ind. LLC</strong> and{' '}
-                  <strong>C.J Tec Contracting LLC</strong>, with over a decade of experience in the
+                  We are pleased to introduce ourselves as <strong translate="no">{company.group}</strong>,
+                  comprising <strong translate="no">{company.name}</strong> and{' '}
+                  <strong translate="no">{company.sisterCompany}</strong>, with over a decade of experience in the
                   construction industry in the U.A.E.
                 </p>
                 <p>
@@ -123,8 +108,9 @@ export default function About() {
             <img
               src="/images/projects/pivot-building.jpg"
               alt="Curtain wall facade on the Pivot Building, Dubai, fabricated and installed by CIJI"
-              width="800"
-              height="1000"
+              width="1280"
+              height="847"
+              loading="lazy"
               className="aspect-[4/5] w-full object-cover"
             />
             <p className="spec-label mt-3">Pivot Building, Dubai</p>
@@ -170,7 +156,7 @@ export default function About() {
           </Reveal>
           <div>
             <Reveal>
-              <SectionHeading title="What we bring to a facade package" />
+              <SectionHeading title="What We Bring to a Facade Package" />
             </Reveal>
             <Reveal delay={100}>
               <ul className="mt-8">
@@ -215,29 +201,35 @@ export default function About() {
               of 4:3, 3:2 and portrait crops, so `columns` produced ragged
               column bottoms; a fixed 4:3 object-cover cell keeps the grid
               even and each caption on the same line as its neighbours. */}
-          <div className="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 lg:gap-5">
-            {gallery.map((g, i) => (
-              <Reveal key={g.src} delay={(i % 4) * 60}>
-                <div className="img-zoom">
-                  <img
-                    src={g.src}
-                    alt={`${g.title}, aluminium and glass facade completed by CIJI in ${g.location}`}
-                    loading="lazy"
-                    width="600"
-                    height="450"
-                    className="aspect-[4/3] w-full object-cover"
-                  />
-                </div>
-                {/* Sentence case, not `spec-label`. These are real project
-                    names and several run past 40 characters ("Residential
-                    Building, Jumeirah Village Triangle" is 47), which is far
-                    too long to set in tracked uppercase: it costs the word
-                    shapes readers navigate by. Uppercase stays for short
-                    labels. */}
-                <p className="mt-2.5 font-mono text-xs leading-snug text-steel-500">{g.title}</p>
+          <div className="mt-12 grid gap-4 sm:grid-cols-3 lg:gap-5">
+            {highlights.map((project, i) => (
+              <Reveal key={project.title} delay={i * 70}>
+                <Link to={`/projects?photo=${imageSlug(project.image)}`} className="group block">
+                  <div className="img-zoom">
+                    <img
+                      src={project.image}
+                      alt={`${project.title}, aluminium and glass facade completed by CIJI in ${project.location}`}
+                      loading="lazy"
+                      width={project.width}
+                      height={project.height}
+                      className="aspect-[4/3] w-full object-cover"
+                    />
+                  </div>
+                  <p className="mt-2.5 font-mono text-xs leading-snug text-steel-500 group-hover:text-navy-950">
+                    {project.title}
+                  </p>
+                </Link>
               </Reveal>
             ))}
           </div>
+          <Reveal delay={120}>
+            <Link
+              to="/projects"
+              className="press link-slide mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-950"
+            >
+              View all projects <ArrowRight size={15} weight="bold" aria-hidden="true" />
+            </Link>
+          </Reveal>
         </div>
       </section>
 

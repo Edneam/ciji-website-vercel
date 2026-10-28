@@ -191,9 +191,31 @@
 }
 
 html {
+  --nav-offset: calc(4.5rem + env(safe-area-inset-top, 0px));
   scroll-behavior: smooth;
+  /* Clears the fixed header when a control or in-page anchor is scrolled into view. */
+  scroll-padding-top: calc(var(--nav-offset) + 0.75rem);
   /* Nothing on the page may push the document sideways. */
   overflow-x: hidden;
+  color-scheme: light;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (pointer: fine) {
+  html {
+    overscroll-behavior: none;
+  }
+}
+
+body,
+a,
+button,
+input,
+select,
+textarea,
+label {
+  touch-action: manipulation;
 }
 
 body {
@@ -259,12 +281,47 @@ p {
   @apply not-sr-only fixed left-4 top-4 z-[100] bg-navy-950 px-5 py-3 text-sm font-semibold text-white;
 }
 
+/* Programmatic skip target. The skip link itself carries the visible focus ring. */
+#main:focus,
+#main:focus-visible {
+  outline: none;
+}
+
 .font-display {
   font-family: var(--font-display);
 }
 
 .container-x {
-  @apply mx-auto w-full max-w-[88rem] px-5 sm:px-8 lg:px-12;
+  @apply mx-auto w-full max-w-[88rem];
+  padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+  padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+}
+
+@media (min-width: 640px) {
+  .container-x {
+    padding-left: max(2rem, env(safe-area-inset-left, 0px));
+    padding-right: max(2rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-x {
+    padding-left: max(3rem, env(safe-area-inset-left, 0px));
+    padding-right: max(3rem, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Footer closes the page on the same light steel as the bands above the navy
+   quote strip. Gold is the hairline and the hover, not a second dark slab. */
+.site-footer {
+  --footer-canvas: var(--color-steel-50);
+  --footer-ink: var(--color-navy-950);
+  --footer-muted: var(--color-steel-600);
+  --footer-hover: var(--color-gold-700);
+  --footer-line: var(--color-steel-200);
+  background: var(--footer-canvas);
+  color: var(--footer-ink);
+  border-top: 1px solid var(--color-gold-700);
 }
 
 /* ---- structural label: reference code / spec key ----
@@ -284,6 +341,36 @@ p {
 /* ---- hairline rule used to structure content instead of card chrome ---- */
 .rule-top {
   @apply border-t border-steel-200;
+}
+
+/* ---- project grids: no orphan cells in the last row -------------------
+   The catalogue shows a fixed batch and then a "Show more" button, so the
+   last row can end one or two cells short and leave a white gap — most
+   visibly on the Earlier projects grid, where 5 tiles sat in a 3-column
+   grid. `tileSpans` in Projects.jsx gives the final tile extra columns so
+   the row always closes; this file gives that tile a shared height.
+
+   Without a fixed row height a tile spanning two columns would be twice as
+   wide and, with the image's own 4:3 ratio, half again as tall as the one
+   beside it, leaving the gap under the shorter card instead of beside it.
+   From `sm` up, the row height is fixed and the image is taken out of flow
+   to fill its cell (`object-cover`), so a wider tile crops wider rather
+   than growing. Mobile stays a single column at 4:3 — no span, no gap. */
+.project-grid {
+  --tile-height: clamp(220px, 25vw, 330px);
+}
+
+.project-tile {
+  grid-column: span 1;
+}
+
+@media (min-width: 640px) {
+  .project-grid {
+    grid-auto-rows: var(--tile-height);
+  }
+  .project-tile {
+    grid-column: span var(--tile-span, 1);
+  }
 }
 
 /* ---- page transition -------------------------------------------------
@@ -413,7 +500,12 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4.5rem 1rem 1rem;
+  padding:
+    calc(4.5rem + env(safe-area-inset-top, 0px))
+    calc(1rem + env(safe-area-inset-right, 0px))
+    calc(1rem + env(safe-area-inset-bottom, 0px))
+    calc(1rem + env(safe-area-inset-left, 0px));
+  overscroll-behavior: contain;
   /* Near-opaque rather than a light wash: a bright page behind a photograph
      fights it. Backdrop blur is a progressive nicety, not load-bearing. */
   background-color: color-mix(in srgb, var(--color-navy-950) 96%, transparent);
@@ -429,7 +521,11 @@ p {
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  padding: 1.25rem 1.25rem;
+  padding:
+    calc(1.25rem + env(safe-area-inset-top, 0px))
+    calc(1.25rem + env(safe-area-inset-right, 0px))
+    1.25rem
+    calc(1.25rem + env(safe-area-inset-left, 0px));
 }
 
 .lightbox__btn {
@@ -498,22 +594,26 @@ p {
 }
 
 .lightbox__nav--prev {
-  inset-inline-start: 0.75rem;
+  inset-inline-start: calc(0.75rem + env(safe-area-inset-left, 0px));
 }
 
 .lightbox__nav--next {
-  inset-inline-end: 0.75rem;
+  inset-inline-end: calc(0.75rem + env(safe-area-inset-right, 0px));
 }
 
 @media (min-width: 768px) {
   .lightbox {
-    padding: 5.5rem 4.5rem 2rem;
+    padding:
+      calc(5.5rem + env(safe-area-inset-top, 0px))
+      calc(4.5rem + env(safe-area-inset-right, 0px))
+      calc(2rem + env(safe-area-inset-bottom, 0px))
+      calc(4.5rem + env(safe-area-inset-left, 0px));
   }
   .lightbox__nav--prev {
-    inset-inline-start: 1.5rem;
+    inset-inline-start: calc(1.5rem + env(safe-area-inset-left, 0px));
   }
   .lightbox__nav--next {
-    inset-inline-end: 1.5rem;
+    inset-inline-end: calc(1.5rem + env(safe-area-inset-right, 0px));
   }
 }
 
@@ -741,6 +841,9 @@ p {
   html {
     scroll-behavior: auto;
   }
+  .site-footer .link-slide::after {
+    transition: none;
+  }
   .img-zoom img {
     transition: none;
   }
@@ -770,9 +873,17 @@ p {
   .lightbox__nav {
     transition: none;
   }
+  .hero-still {
+    transition: none;
+  }
+  .hero-video-toggle {
+    display: none;
+  }
 }
 
-/* ---- slow image zoom on hover ---- */
+.hero-still {
+  transition: opacity 1.4s var(--ease-out-expo);
+}
 .img-zoom {
   overflow: hidden;
 }

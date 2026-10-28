@@ -5,13 +5,14 @@ import { CaretRight } from '@phosphor-icons/react'
 // gold kicker string with a non-navigable "Home /" prefix).
 export default function PageHeader({ title, crumb, image, lead }) {
   return (
-    <section className="relative flex min-h-[22rem] items-end overflow-hidden bg-navy-950 pt-24">
+    <section className="relative flex min-h-[22rem] items-end overflow-hidden bg-navy-950 pt-[calc(var(--nav-offset)+1.5rem)]">
       <img
         src={image}
         alt=""
         aria-hidden="true"
         width="1920"
         height="600"
+        fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover opacity-25"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/70 to-navy-950/30" />

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import LegalPage from '../components/LegalPage.jsx'
-import { company } from '../data/site.js'
+import { company, legalUpdated } from '../data/site.js'
 
 /**
  * Terms of use.
@@ -20,11 +20,12 @@ export default function Terms() {
       seoTitle="Terms of Use"
       seoDescription="Terms of use for the Ciji Bldg. Metalic Const. Ind. LLC website, covering permitted use, the status of quotations, intellectual property and governing law in the UAE."
       path="/terms"
-      updated="September 2026"
+      updated={legalUpdated}
     >
       <h2>Who these terms are with</h2>
       <p>
-        This website is operated by {company.name}, part of {company.group}, with its head office at
+        This website is operated by <span translate="no">{company.name}</span>, part of{' '}
+        <span translate="no">{company.group}</span>, with its head office at
         Industrial Area 17, Plot 39, Sharjah, United Arab Emirates. By using the site you accept
         these terms. If you do not accept them, please do not use the site.
       </p>

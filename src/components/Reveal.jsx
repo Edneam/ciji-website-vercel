@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
 // Adds .is-visible when the element scrolls into view (one-shot).
-export default function Reveal({ as: Tag = 'div', delay = 0, className = '', children, ...rest }) {
+export default function Reveal({ as: Tag = 'div', delay = 0, className = '', style, children, ...rest }) {
   const ref = useRef(null)
   const [visible, setVisible] = useState(false)
 
@@ -25,7 +25,7 @@ export default function Reveal({ as: Tag = 'div', delay = 0, className = '', chi
     <Tag
       ref={ref}
       className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
-      style={delay ? { '--reveal-delay': `${delay}ms` } : undefined}
+      style={{ ...(delay ? { '--reveal-delay': `${delay}ms` } : null), ...style }}
       {...rest}
     >
       {children}

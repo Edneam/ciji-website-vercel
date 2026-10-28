@@ -139,7 +139,13 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
       {/* `key` forces a remount per image so the entrance animation replays
           when stepping through with the arrow keys. */}
       <figure key={item.image} className="lightbox__figure">
-        <img src={item.image} alt={item.alt} className="lightbox__img" />
+        <img
+          src={item.image}
+          alt={item.alt}
+          width={item.width || 1280}
+          height={item.height || 847}
+          className="lightbox__img"
+        />
         <figcaption className="lightbox__cap">
           <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold-400">
             {item.category}

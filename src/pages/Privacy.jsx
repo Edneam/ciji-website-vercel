@@ -1,15 +1,15 @@
 import { Link } from 'react-router-dom'
 import LegalPage from '../components/LegalPage.jsx'
-import { company } from '../data/site.js'
+import { company, legalUpdated } from '../data/site.js'
 
 /**
  * Privacy notice.
  *
  * Every statement here describes what the site actually does, verified
  * against the source: no analytics, no cookies, no localStorage, no
- * tracking pixels, and an enquiry form that opens the visitor's own mail
- * client rather than posting to a server. The only third-party request is
- * the Google Maps embed on the contact page, which loads with the page.
+ * tracking pixels, and no enquiry form. Visitors call or email the office
+ * directly. The only third-party request is the Google Maps embed on the
+ * contact page, which loads with the page.
  */
 export default function Privacy() {
   return (
@@ -20,11 +20,12 @@ export default function Privacy() {
       seoTitle="Privacy Notice"
       seoDescription="Privacy notice for Ciji Bldg. Metalic Const. Ind. LLC: what personal data the website collects, how enquiry details are used, and how to request deletion."
       path="/privacy"
-      updated="September 2026"
+      updated={legalUpdated}
     >
       <h2>Who we are</h2>
       <p>
-        This website is operated by <strong>{company.name}</strong>, part of {company.group}. Our
+        This website is operated by <strong translate="no">{company.name}</strong>, part of{' '}
+        <span translate="no">{company.group}</span>. Our
         head office is at Industrial Area 17, Plot 39, Opp. Al Alif Marbles, P.O Box 44316,
         Sharjah, United Arab Emirates.
       </p>
@@ -45,26 +46,12 @@ export default function Privacy() {
         <li>We do not build visitor profiles or sell data to anyone.</li>
       </ul>
 
-      <h2>The enquiry form</h2>
+      <h2>How you contact us</h2>
       <p>
-        The form on our <Link to="/contact">contact page</Link> does not send anything to a server we
-        control. When you submit it, the details you typed are placed into a draft email in your own
-        email application, addressed to us. Nothing leaves your device until you press send in that
-        application, and you can edit or discard the draft first.
-      </p>
-      <p>
-        Once you do send it, we receive the following in our inbox, because you chose to provide it:
-      </p>
-      <ul>
-        <li>Your name</li>
-        <li>Your email address</li>
-        <li>Your telephone number, if you entered one</li>
-        <li>The scope of work you selected</li>
-        <li>The project details you wrote</li>
-      </ul>
-      <p>
-        We ask for nothing beyond what is needed to price and discuss a facade package. If you would
-        rather not use the form, you can email or telephone us directly using the details above.
+        The <Link to="/contact">contact page</Link> has no form and does not store messages. To ask
+        for a price, call or email the office using the details published there. If you email us, we
+        receive whatever you choose to send, such as your name, a telephone number, drawings and a
+        description of the facade scope.
       </p>
 
       <h2>Why we hold it and for how long</h2>

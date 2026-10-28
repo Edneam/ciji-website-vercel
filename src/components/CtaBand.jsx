@@ -34,13 +34,13 @@ export default function CtaBand() {
             infrastructure projects at competitive pricing.
           </p>
         </Reveal>
-        <Reveal delay={120} className="flex shrink-0 flex-wrap items-center gap-4">
-          <Link to="/contact" className="btn btn-primary">
+        <Reveal delay={120} className="flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+          <Link to="/contact" className="btn btn-primary w-full sm:w-auto">
             Request a Quote
           </Link>
-          <a href={company.phoneHref} className="btn btn-outline">
-            <Phone size={17} weight="regular" />
-            {company.phone}
+          <a href={company.phoneHref} className="btn btn-outline w-full sm:w-auto">
+            <Phone size={17} weight="regular" aria-hidden="true" />
+            <span className="whitespace-nowrap">{company.phone}</span>
           </a>
         </Reveal>
       </div>

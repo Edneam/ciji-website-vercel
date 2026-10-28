@@ -1,11 +1,30 @@
+const timeFormat = new Intl.DateTimeFormat('en-GB', {
+  hour: '2-digit',
+  minute: '2-digit',
+  hourCycle: 'h23',
+})
+const weekdayFormat = new Intl.DateTimeFormat('en-GB', { weekday: 'long' })
+
+function clock(day, hours, minutes) {
+  return new Date(2026, 0, day, hours, minutes)
+}
+
+/** Monday 5 Jan 2026 through Saturday 10 Jan 2026. Renders the same string the site has always shown. */
+const officeHours = `${timeFormat.format(clock(5, 8, 30))} to ${timeFormat.format(clock(5, 19, 0))}, ${weekdayFormat.format(clock(5, 8, 30))} to ${weekdayFormat.format(clock(10, 8, 30))}`
+
+export const legalUpdated = new Intl.DateTimeFormat('en-GB', {
+  month: 'long',
+  year: 'numeric',
+}).format(new Date(2026, 8, 1))
+
 export const company = {
   name: 'Ciji Bldg. Metalic Const. Ind. LLC',
-  group: 'C.J Group of Companies',
-  sisterCompany: 'C.J Tec Contracting LLC',
-  phone: '+971 06 5355094',
+  group: 'C.J\u00A0Group of Companies',
+  sisterCompany: 'C.J\u00A0Tec Contracting LLC',
+  phone: '+971\u00A006\u00A05355094',
   phoneHref: 'tel:+971065355094',
   email: 'cijialum@yahoo.com',
-  hours: '08:30 to 19:00, Monday to Saturday',
+  hours: officeHours,
   offices: [
     {
       city: 'Sharjah (Head Office)',
@@ -17,6 +36,13 @@ export const company = {
     },
   ],
 }
+
+/**
+ * Public profiles. Only entries with a real URL are rendered.
+ * An empty list draws no social row.
+ * `platform` must be one of: facebook, instagram, linkedin, x, youtube, whatsapp.
+ */
+export const socials = []
 
 /**
  * Figures shown in the stats strip.

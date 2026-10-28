@@ -7,10 +7,39 @@ import Reveal from './Reveal.jsx'
  * hairline-separated sections. Policy pages are read, not scanned, so the
  * layout gets out of the way.
  */
-export default function LegalPage({ title, crumb, description, path, updated, children }) {
+export default function LegalPage({
+  title,
+  crumb,
+  description,
+  seoTitle,
+  seoDescription,
+  path,
+  updated,
+  children,
+}) {
+  const crumbName = crumb || title
+  const schema = {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: crumbName,
+        item: `https://cijialuminium.com${path}`,
+      },
+    ],
+  }
+
   return (
     <>
-      <Seo title={title} description={description} path={path} />
+      <Seo
+        title={seoTitle || title}
+        description={description || seoDescription}
+        path={path}
+        schema={schema}
+        lcpImage="/images/projects/dubai-walls.jpg"
+      />
       <PageHeader title={title} crumb={crumb} image="/images/projects/dubai-walls.jpg" />
 
       <section className="py-16 md:py-24">

@@ -6,7 +6,7 @@ import { company } from '../data/site.js'
 const routes = [
   { to: '/services', label: 'Services', desc: 'Twelve product lines across the building envelope.' },
   { to: '/projects', label: 'Projects', desc: 'Delivered residential, commercial and industrial work.' },
-  { to: '/about', label: 'About us', desc: 'Who C.J Group of Companies is and how we work.' },
+  { to: '/about', label: 'About Us', desc: 'Who C.J Group of Companies is and how we work.' },
   { to: '/contact', label: 'Contact', desc: 'Request a priced facade package.' },
 ]
 
@@ -14,11 +14,13 @@ export default function NotFound() {
   return (
     <>
       <Seo
-        title="Page not found"
+        title="Page Not Found"
         description="This page does not exist. Browse CIJI aluminium and glass facade services, delivered projects, or contact the Sharjah office."
-        path="/404"
+        robots="noindex, follow"
+        canonical={false}
+        jsonLd={false}
       />
-      <section className="bg-navy-950 pt-32 pb-20 text-white md:pt-40 md:pb-28">
+      <section className="bg-navy-950 pt-[calc(var(--nav-offset)+3.5rem)] pb-20 text-white md:pt-[calc(var(--nav-offset)+5.5rem)] md:pb-28">
         <div className="container-x">
           <div className="grid gap-12 lg:grid-cols-[1fr_1.1fr] lg:gap-20">
             <div>
@@ -28,7 +30,7 @@ export default function NotFound() {
                   already says. The code is folded into the heading instead, so
                   it is still stated once and carries real weight. */}
               <h1 className="font-display text-4xl font-bold uppercase leading-[1.05] md:text-5xl">
-                404: this page does not exist
+                404: This Page Does Not Exist
               </h1>
               <p className="mt-5 max-w-md leading-relaxed text-steel-300">
                 The address may have changed or been typed incorrectly. The main sections of the
@@ -39,11 +41,11 @@ export default function NotFound() {
                   to="/"
                   className="btn btn-primary"
                 >
-                  Back to home <ArrowRight size={15} weight="bold" />
+                  Back to Home <ArrowRight size={15} weight="bold" aria-hidden="true" />
                 </Link>
                 <a
                   href={company.phoneHref}
-                  className="link-slide font-mono text-sm font-medium text-white"
+                  className="link-slide whitespace-nowrap font-mono text-sm font-medium text-white"
                 >
                   {company.phone}
                 </a>
@@ -68,7 +70,8 @@ export default function NotFound() {
                       <ArrowRight
                         size={16}
                         weight="bold"
-                        className="mt-1 shrink-0 text-steel-500 transition-all duration-300 group-hover:translate-x-1 group-hover:text-gold-400"
+                        aria-hidden="true"
+                        className="mt-1 shrink-0 text-steel-500 transition-[transform,color] duration-300 group-hover:translate-x-1 group-hover:text-gold-400"
                       />
                     </Link>
                   </li>

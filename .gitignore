@@ -24,5 +24,8 @@ dist-ssr
 *.sln
 *.sw?
 
+# Camera originals. The site uses public/images/finished.
+source-photos/
+
 # Vercel
 .vercel

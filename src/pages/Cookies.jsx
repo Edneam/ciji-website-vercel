@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import LegalPage from '../components/LegalPage.jsx'
-import { company } from '../data/site.js'
+import { company, legalUpdated } from '../data/site.js'
 
 /**
  * Cookie notice.
@@ -22,7 +22,7 @@ export default function Cookies() {
       seoTitle="Cookie Notice"
       seoDescription="Cookie notice for Ciji Bldg. Metalic Const. Ind. LLC. This website sets no cookies of its own and uses no analytics software. The embedded Google Map on the contact page sets Google's own cookies."
       path="/cookies"
-      updated="September 2026"
+      updated={legalUpdated}
     >
       <h2>Summary</h2>
       <p>

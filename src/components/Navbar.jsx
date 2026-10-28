@@ -70,55 +70,26 @@ export default function Navbar() {
     }
   }, [open])
 
-  /* Both the scrolled bar and the mobile panel are dark blue, so there is no
-     longer a light state anywhere in this header: the logo, the links, the
-     underline and the burger are all constants now. `solid` used to drive four
-     separate colour flips off one flag and is no longer needed. */
-
   return (
     <>
       <div ref={sentinel} aria-hidden="true" className="absolute left-0 top-0 h-10 w-px" />
-      {/* Deep blue glass, not a solid gold band.
-
-          The gold bar was the loudest surface on the site and it fought
-          everything: it forced the logo to flip to black, forced the nav links
-          and the burger to flip to navy, and forced the active underline to
-          swap colour, so four separate things had to stay in sync with one
-          scroll flag. It also put the brand's single accent colour behind the
-          navigation, which left the accent with nothing left to point at.
-
-          Now the bar is navy-800 at 88% with a backdrop blur, over a hairline
-          of gold at 35%. The blur is what makes it read as premium rather than
-          as a panel: the facade photography underneath stays faintly legible
-          and in motion while the type on top stays fully opaque. Gold is
-          demoted to a 1px rule, which is the only place it is still needed.
-
-          `supports` guard: without backdrop-filter the alpha alone would let
-          content show through too strongly, so those browsers get an opaque
-          bar instead. */}
+      {/* Light steel bar. The mark is blue and green with no backing plate,
+          so a navy bar swallows it. Steel-50 is the same ground as the page
+          bands, navy type stays readable, and gold is only the active mark. */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,box-shadow] duration-500 ${
-          open
-            ? 'border-b border-white/10 bg-navy-950'
-            : scrolled
-              ? 'nav-glass border-b border-gold-500/35 shadow-[0_1px_24px_-4px_rgb(7_22_39_/_0.55)]'
-              : 'nav-veil border-b border-transparent bg-transparent'
+        className={`fixed inset-x-0 top-0 z-50 border-b border-steel-200 bg-steel-50 pt-[env(safe-area-inset-top,0px)] transition-shadow duration-500 ${
+          scrolled && !open ? 'shadow-[0_1px_16px_-6px_rgb(7_22_39_/_0.18)]' : ''
         }`}
       >
         <nav aria-label="Main">
           <div className="container-x flex h-[72px] items-center justify-between">
-            <Link to="/" aria-label={`${company.name} home`} className="shrink-0">
-              {/* One constant filter now. Previously this flipped between
-                  `brightness-0` (black mark, for the gold bar) and
-                  `brightness-0 invert` (white mark, for everything else). With
-                  the bar dark in every state the white mark is always correct,
-                  so the conditional is gone rather than merely simplified. */}
+            <Link to="/" aria-label={`${company.name} home`} className="shrink-0" translate="no">
               <img
-                src="/images/logo.png"
+                src="/images/logo-mark.png?v=3"
                 alt={company.name}
-                width="180"
-                height="48"
-                className="h-10 w-auto brightness-0 invert sm:h-11"
+                width={256}
+                height={217}
+                className="h-12 w-auto sm:h-14"
               />
             </Link>
 
@@ -130,8 +101,8 @@ export default function Navbar() {
                     end={l.to === '/'}
                     className={({ isActive }) =>
                       `relative px-4 py-2 font-mono text-[13.5px] font-medium uppercase tracking-[0.12em] transition-colors duration-300 ${
-                        isActive ? 'text-white' : 'text-steel-300 hover:text-white'
-                      } after:absolute after:inset-x-4 after:-bottom-0.5 after:h-[2px] after:origin-left after:bg-gold-500 after:transition-transform after:duration-300 ${
+                        isActive ? 'text-navy-950' : 'text-navy-700 hover:text-navy-950'
+                      } after:absolute after:inset-x-4 after:-bottom-0.5 after:h-[2px] after:origin-left after:bg-gold-600 after:transition-transform after:duration-300 ${
                         isActive ? 'after:scale-x-100' : 'after:scale-x-0'
                       }`
                     }
@@ -147,7 +118,7 @@ export default function Navbar() {
             <button
               ref={toggle}
               type="button"
-              className="-mr-2 flex h-11 w-11 items-center justify-center text-white lg:hidden"
+              className="-mr-2 flex h-11 w-11 items-center justify-center text-navy-950 lg:hidden"
               onClick={() => setOpen((v) => !v)}
               aria-label={open ? 'Close menu' : 'Open menu'}
               aria-expanded={open}
@@ -165,18 +136,18 @@ export default function Navbar() {
             <div
               ref={panel}
               id="mobile-nav"
-              className="fixed inset-x-0 bottom-0 top-[72px] overflow-y-auto border-t border-white/10 bg-navy-950 lg:hidden"
+              className="fixed inset-x-0 bottom-0 top-[var(--nav-offset)] overflow-y-auto overscroll-contain border-t border-steel-200 bg-steel-50 pb-[max(1.5rem,env(safe-area-inset-bottom))] lg:hidden"
             >
               <ul className="container-x py-2">
                 {links.map((l) => (
-                  <li key={l.to} className="border-b border-white/10">
+                  <li key={l.to} className="border-b border-steel-200">
                     <NavLink
                       to={l.to}
                       end={l.to === '/'}
                       onClick={() => setOpen(false)}
                       className={({ isActive }) =>
                         `flex min-h-[56px] items-center font-mono text-[14px] font-medium uppercase tracking-[0.12em] ${
-                          isActive ? 'text-gold-500' : 'text-white'
+                          isActive ? 'text-gold-700' : 'text-navy-950'
                         }`
                       }
                     >
@@ -194,7 +165,7 @@ export default function Navbar() {
                 <a
                   href={company.phoneHref}
                   onClick={() => setOpen(false)}
-                  className="btn btn-outline w-full"
+                  className="btn btn-outline-dark w-full"
                 >
                   <Phone size={17} weight="regular" aria-hidden="true" />
                   {company.phone}

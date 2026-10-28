@@ -1,51 +1,18 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, Check } from '@phosphor-icons/react'
+import { ArrowRight, Check, Pause, Play } from '@phosphor-icons/react'
 import Reveal from '../components/Reveal.jsx'
 import StatsStrip from '../components/StatsStrip.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import ReferenceList from '../components/ReferenceList.jsx'
 import Seo from '../components/Seo.jsx'
-import { services } from '../data/services.js'
-import { projects } from '../data/projects.js'
+import { company } from '../data/site.js'
+import { earlierProjects, imageSlug, projects } from '../data/projects.js'
 
-const homeSchema = [
-  {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    '@id': 'https://cijialuminium.com/#organization',
-    name: 'Ciji Bldg. Metalic Const. Ind. LLC',
-    alternateName: ['C.J Group of Companies', 'Ciji Aluminium'],
-    url: 'https://cijialuminium.com',
-    logo: 'https://cijialuminium.com/images/logo.png',
-    telephone: '+971-06-5355094',
-    email: 'cijialum@yahoo.com',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Industrial Area 17, Plot 39',
-      addressLocality: 'Sharjah',
-      addressCountry: 'AE',
-      postOfficeBoxNumber: 'P.O Box 44316',
-    },
-  },
-  {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': 'https://cijialuminium.com/#localbusiness',
-    name: 'Ciji Bldg. Metalic Const. Ind. LLC',
-    image: 'https://cijialuminium.com/images/hero-poster.jpg',
-    telephone: '+971-06-5355094',
-    email: 'cijialum@yahoo.com',
-    priceRange: '$$$',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Industrial Area 17, Plot 39',
-      addressLocality: 'Sharjah',
-      addressCountry: 'AE',
-    },
-    areaServed: ['Sharjah', 'Dubai', 'Abu Dhabi', 'United Arab Emirates'],
-    openingHours: 'Mo-Sa 08:30-19:00',
-  },
+const covers = [
+  { src: '/images/cover-1.jpg', width: 1920, height: 1329 },
+  { src: '/images/cover-2.jpg', width: 1920, height: 1309 },
 ]
 
 // Capability claims drawn from the company profile. No icons: a grid glyph
@@ -66,81 +33,69 @@ const capabilities = [
   },
 ]
 
-/**
- * The six building-envelope systems, each paired with a photograph of built
- * work. Only images confirmed at 1280px wide are used here, because these
- * cards render large; the smaller 390px project photos would visibly soften.
- *
- * `credit` names the project in the photograph. It is deliberately worded as
- * a photo credit ("Shown: ...") and not as "this system was installed here",
- * because the system-to-project pairing has not been confirmed against
- * company records. See NOTES.md.
- */
-const envelopeArt = [
-  { image: '/images/projects/ic3-tower.jpg', credit: 'Shown: IC3 Tower, Dubai' },
-  { image: '/images/projects/pivot-building.jpg', credit: 'Shown: Pivot Building, Dubai' },
-  { image: '/images/projects/enviroserve.jpg', credit: 'Shown: Enviroserve Facility, Dubai' },
-  { image: '/images/projects/cold-stores.jpg', credit: 'Shown: Cold Stores Facility, Dubai' },
-  { image: '/images/projects/titan-building.jpg', credit: 'Shown: Titan Building, Sharjah' },
-  { image: '/images/projects/mag-building.jpg', credit: 'Shown: Mag Building, Dubai' },
-]
-
-const envelopeSystems = services.slice(0, 6).map((s, i) => ({
-  ...s,
-  ...envelopeArt[i],
-  alt: `${envelopeArt[i].credit.replace('Shown: ', '')}, aluminium and glass facade by CIJI`,
-}))
-
-const metalworkLines = services.slice(6)
-
 export default function Home() {
-  const leadProject = projects[0]
-  const gridProjects = projects.slice(1, 5)
+  const showcase = projects.length ? projects : earlierProjects
+  const featuredProjects = showcase.slice(0, 3)
+  const [cover, setCover] = useState(0)
+  const [held, setHeld] = useState(false)
+
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    const apply = () => {
+      if (motion.matches) setHeld(true)
+    }
+    apply()
+    motion.addEventListener('change', apply)
+    return () => motion.removeEventListener('change', apply)
+  }, [])
+
+  useEffect(() => {
+    if (held) return undefined
+    const id = window.setInterval(() => {
+      setCover((current) => (current + 1) % covers.length)
+    }, 20000)
+    return () => window.clearInterval(id)
+  }, [held])
 
   return (
     <>
       <Seo
-        title="Ciji Bldg. Metalic Const. Ind. LLC | Aluminium & Glass Facade Contractor, UAE"
-        description="Aluminium and glass facade contractor in the UAE. Structural glazing, curtain walling, spider glazing, skylights and cladding, fabricated and installed in-house from Sharjah. Part of C.J Group of Companies."
+        title="Aluminium & Glass Facade Contractor UAE | CIJI"
+        description="Aluminium and glass facade contractor in Sharjah and Dubai. Structural glazing, curtain walling, spider glazing, skylights and cladding, fabricated and installed in-house."
         path="/"
-        schema={homeSchema}
+        lcpImage="/images/cover-1.jpg"
+        ogImage="/images/cover-1.jpg"
       />
 
       {/* ---- Hero: left-aligned, 4 text elements max ---- */}
       <section className="relative flex min-h-[100dvh] items-center overflow-hidden bg-navy-950">
-        <img
-          src="/images/hero-poster.jpg"
-          alt=""
-          aria-hidden="true"
-          fetchPriority="high"
-          width="1920"
-          height="1080"
-          className="absolute inset-0 h-full w-full object-cover"
-        />
-        <video
-          className="absolute inset-0 h-full w-full object-cover"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-          aria-hidden="true"
-          tabIndex={-1}
-        >
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
-        </video>
+        {covers.map((item, index) => (
+          <img
+            key={item.src}
+            src={item.src}
+            alt=""
+            aria-hidden="true"
+            width={item.width}
+            height={item.height}
+            fetchPriority={index === 0 ? 'high' : 'low'}
+            decoding="async"
+            className={`hero-still absolute inset-0 h-full w-full object-cover ${
+              index === cover ? 'opacity-100' : 'opacity-0'
+            }`}
+          />
+        ))}
         {/* Directional scrim: heavier at the left where the type sits, so the
             glass reflections stay legible on the right. */}
         <div className="absolute inset-0 bg-gradient-to-r from-navy-950/85 via-navy-950/60 to-navy-950/25" />
 
-        <div className="container-x relative pt-28 pb-20">
+        <div className="container-x relative pt-[calc(var(--nav-offset)+2.5rem)] pb-20">
           <div className="max-w-3xl">
             <Reveal>
               {/* No kicker above the h1. The company name belongs in the
                   supporting line and the footer, not as a tracked label
                   diluting the headline. */}
               <h1 className="font-display text-[2.35rem] font-bold uppercase leading-[1.06] tracking-tight text-white sm:text-5xl lg:text-[3.75rem]">
-                Aluminium and glass facades, engineered and installed
+                Aluminium and Glass Facades, Engineered and Installed
               </h1>
             </Reveal>
             <Reveal delay={180}>
@@ -150,17 +105,30 @@ export default function Home() {
               </p>
             </Reveal>
             <Reveal delay={260}>
-              <div className="mt-10 flex flex-wrap items-center gap-4">
-                <Link to="/contact" className="btn btn-primary">
-                  Request a Quote <ArrowRight size={16} weight="bold" />
+              <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+                <Link to="/contact" className="btn btn-primary w-full sm:w-auto">
+                  Request a Quote <ArrowRight size={16} weight="bold" aria-hidden="true" />
                 </Link>
-                <Link to="/projects" className="btn btn-outline">
-                  See delivered projects
+                <Link to="/projects" className="btn btn-outline w-full sm:w-auto">
+                  See Delivered Projects
                 </Link>
               </div>
             </Reveal>
           </div>
         </div>
+        <button
+          type="button"
+          className="hero-video-toggle absolute right-[max(1.25rem,env(safe-area-inset-right))] bottom-[max(1.5rem,env(safe-area-inset-bottom))] z-10 inline-flex h-11 w-11 items-center justify-center border border-white/55 text-white hover:border-gold-500 hover:text-gold-500 sm:right-8"
+          aria-pressed={held}
+          aria-label={held ? 'Play background' : 'Pause background'}
+          onClick={() => setHeld((value) => !value)}
+        >
+          {held ? (
+            <Play size={16} weight="fill" aria-hidden="true" />
+          ) : (
+            <Pause size={16} weight="fill" aria-hidden="true" />
+          )}
+        </button>
       </section>
 
       {/* ---- Layout family 2: asymmetric split, image bleeds off the grid ---- */}
@@ -168,23 +136,25 @@ export default function Home() {
         <div className="container-x grid items-start gap-14 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
           <Reveal className="img-zoom lg:-mt-4">
             <img
-              src="/images/projects/satwa-g8.jpg"
-              alt="Structural glass facade on a G+8 residential building in Satwa, Dubai"
-              width="800"
-              height="1000"
+              src="/images/finished/oud-metha-residential-2.jpg"
+              alt="Glass and aluminium facade of the G+2P+11 residential building in Oud Metha, Dubai"
+              width="1920"
+              height="1280"
               loading="lazy"
-              className="aspect-[4/5] w-full object-cover"
+              className="aspect-[4/5] w-full object-cover object-[center_42%]"
             />
           </Reveal>
 
           <div>
             <Reveal>
-              <SectionHeading title="A specialist facade subcontractor, not a general trade" />
+              <SectionHeading title="A Specialist Facade Subcontractor, Not a General Trade" />
             </Reveal>
             <Reveal delay={100}>
               <div className="mt-7 space-y-5 leading-relaxed">
                 <p>
-                  <strong className="font-semibold text-navy-950">{'C.J Group of Companies'}</strong>{' '}
+                  <strong className="font-semibold text-navy-950" translate="no">
+                    {company.group}
+                  </strong>{' '}
                   comprises Ciji Bldg. Metalic Const. Ind. LLC and C.J Tec Contracting LLC, with over
                   a decade of experience in the UAE construction industry and a technically qualified
                   team experienced in aluminium and glass fabrication.
@@ -205,7 +175,7 @@ export default function Home() {
                   'Track record with government authorities and main contractors',
                 ].map((t) => (
                   <li key={t} className="flex gap-4 py-4">
-                    <Check size={18} weight="bold" className="mt-1 shrink-0 text-gold-700" />
+                    <Check size={18} weight="bold" aria-hidden="true" className="mt-1 shrink-0 text-gold-700" />
                     <span className="text-navy-950">{t}</span>
                   </li>
                 ))}
@@ -217,188 +187,95 @@ export default function Home() {
                 to="/about"
                 className="press link-slide mt-8 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-navy-950"
               >
-                More about the company <ArrowRight size={15} weight="bold" />
+                More about the Company <ArrowRight size={15} weight="bold" aria-hidden="true" />
               </Link>
             </Reveal>
           </div>
         </div>
       </section>
 
-      {/* ---- Layout family 3: image-led capability bento.
-              Specialist facade contractors (Enclos, Permasteelisa) sell this
-              section on photographs of built work, not on a list of product
-              names. The six envelope systems each carry a real project photo
-              and a project credit; the remaining six trades sit below as a
-              compact strip so the twelve in the copy still equals twelve on
-              the page. Bento is 3x3 with an exact cell count: the lead card
-              takes 2x2, two cards stack in the right column, three run along
-              the bottom. No empty cells. ---- */}
       <section className="border-y border-steel-200 bg-steel-50 py-24 lg:py-32">
         <div className="container-x">
-          <Reveal>
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                {/* No kicker: the heading names the capability set itself. */}
-                <h2 className="font-display max-w-xl text-3xl font-bold uppercase leading-[1.05] tracking-tight text-navy-950 md:text-[2.6rem]">
-                  Twelve product lines across the building envelope
-                </h2>
-              </div>
-              <p className="max-w-xs shrink-0 leading-relaxed sm:text-right">
-                Designed, fabricated and installed by our own teams, under one contract.
-              </p>
-            </div>
-          </Reveal>
-
-          <ul className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:grid-rows-3">
-            {envelopeSystems.map((s, i) => (
-              <li
-                key={s.title}
-                className={i === 0 ? 'lg:col-span-2 lg:row-span-2' : undefined}
+          <div className="flex flex-wrap items-end justify-between gap-x-8 gap-y-5">
+            <Reveal>
+              <SectionHeading
+                title="Recent projects"
+                sub="Three elevations from the latest finished set."
+              />
+            </Reveal>
+            <Reveal>
+              <Link
+                to="/projects"
+                className="inline-flex items-center gap-2 text-sm font-semibold text-navy-950 hover:text-gold-700"
               >
-                <Reveal delay={Math.min(i, 3) * 70} className="h-full">
+                All projects
+                <ArrowRight size={16} weight="bold" aria-hidden="true" />
+              </Link>
+            </Reveal>
+          </div>
+
+          <div className="mt-10 grid gap-3 lg:grid-cols-[1.45fr_1fr] lg:grid-rows-2">
+            {featuredProjects.map((project, i) => {
+              const lead = i === 0
+              return (
+                <Reveal
+                  key={project.title}
+                  delay={i * 80}
+                  className={
+                    lead
+                      ? 'h-full min-h-0 lg:col-start-1 lg:row-span-2 lg:row-start-1'
+                      : i === 1
+                        ? 'lg:col-start-2 lg:row-start-1'
+                        : 'lg:col-start-2 lg:row-start-2'
+                  }
+                >
                   <Link
-                    to="/services"
-                    className="img-zoom group relative flex h-full min-h-[15rem] flex-col justify-end overflow-hidden bg-navy-950"
+                    to={`/projects?photo=${imageSlug(project.image)}`}
+                    className="group img-zoom relative block h-full"
                   >
                     <img
-                      src={s.image}
-                      alt={s.alt}
+                      src={project.image}
+                      alt={`${project.title}, ${project.category.toLowerCase()} project in ${project.location}`}
+                      width={project.width}
+                      height={project.height}
                       loading="lazy"
-                      width="1280"
-                      height="960"
-                      className="absolute inset-0 h-full w-full object-cover opacity-80 transition-opacity duration-500 group-hover:opacity-95"
+                      className={`w-full object-cover ${
+                        lead
+                          ? 'aspect-[4/3] lg:absolute lg:inset-0 lg:h-full lg:aspect-auto'
+                          : 'aspect-[16/10]'
+                      }`}
                     />
-                    {/* Scrim carries the label; heavier at the foot where the
-                        type sits so the glass stays readable above it. */}
                     <div
                       aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/55 to-transparent"
+                      className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/25 to-transparent"
                     />
-                    <div className="relative p-6">
-                      <p className="spec-label text-gold-500">
-                        {String(i + 1).padStart(2, '0')}
-                      </p>
+                    <div className="absolute inset-x-0 bottom-0 p-5 sm:p-6">
+                      <p className="spec-label text-gold-400">{project.category}</p>
                       <h3
-                        className={`font-display mt-2 font-bold uppercase leading-tight tracking-tight text-white ${
-                          i === 0 ? 'text-2xl md:text-3xl' : 'text-lg'
+                        className={`font-display mt-2 font-bold leading-tight text-white ${
+                          lead ? 'text-2xl sm:text-3xl' : 'text-xl'
                         }`}
                       >
-                        {s.title}
+                        {project.title}
                       </h3>
-                      {i === 0 ? (
-                        <p className="mt-3 max-w-md text-sm leading-relaxed text-steel-200">
-                          {s.desc}
-                        </p>
-                      ) : null}
-                      {/* Sentence case, not uppercase: these credits run to
-                          30-odd characters, and uppercase at that length costs
-                          the word-shape cues that make text readable.
-                          Uppercase stays for short labels only. */}
-                      <p className="mt-3 font-mono text-[12px] tracking-[0.02em] text-steel-300">
-                        {s.credit}
-                      </p>
+                      <p className="mt-1 font-mono text-sm text-steel-300">{project.location}</p>
                     </div>
                   </Link>
                 </Reveal>
-              </li>
-            ))}
-          </ul>
-
-          {/* The other six trades. Named, not pictured, so the count is honest
-              without padding the grid with weaker photography.
-
-              Centred rather than set in a two-column split: the list is short
-              and the left rail left an L-shaped void with the button hanging
-              low beside empty space. A single centred stack closes the
-              section symmetrically under the bento above. */}
-          <Reveal delay={120} className="mt-12">
-            <div className="border-t border-steel-300 pt-10 text-center">
-              <h3 className="spec-label">Also fabricated in-house</h3>
-              <ul className="mt-6 flex flex-wrap justify-center gap-x-8 gap-y-3">
-                {metalworkLines.map((s, i) => (
-                  <li key={s.title} className="flex items-baseline gap-2.5">
-                    <span className="font-mono text-[12px] font-medium text-gold-700">
-                      {String(i + 7).padStart(2, '0')}
-                    </span>
-                    <span className="text-sm font-medium text-navy-950">{s.title}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <Link to="/services" className="btn btn-invert mt-10">
-                All services
-                <ArrowRight size={15} weight="bold" aria-hidden="true" />
-              </Link>
-            </div>
-          </Reveal>
+              )
+            })}
+          </div>
         </div>
       </section>
 
       <StatsStrip />
-
-      {/* ---- Layout family 4: editorial project feature, one lead + grid ---- */}
-      <section className="py-24 lg:py-32">
-        <div className="container-x">
-          <Reveal>
-            <SectionHeading
-              title="Projects delivered across the UAE"
-              sub="Residential towers, commercial buildings and industrial facilities completed as a facade subcontractor."
-            />
-          </Reveal>
-
-          <Reveal delay={80} className="mt-14">
-            <Link to="/projects" className="group img-zoom relative block">
-              <img
-                src={leadProject.image}
-                alt={`${leadProject.title}, ${leadProject.category.toLowerCase()} project in ${leadProject.location}`}
-                width="1600"
-                height="900"
-                loading="lazy"
-                className="aspect-[16/9] w-full object-cover"
-              />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent" />
-              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-10">
-                <p className="spec-label text-gold-400">{leadProject.category}</p>
-                <h3 className="font-display mt-2 text-2xl font-bold text-white sm:text-3xl">
-                  {leadProject.title}
-                </h3>
-                <p className="mt-1 font-mono text-sm text-steel-300">{leadProject.location}</p>
-              </div>
-            </Link>
-          </Reveal>
-
-          <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {gridProjects.map((p, i) => (
-              <Reveal key={p.title} delay={i * 70}>
-                <Link to="/projects" className="group block">
-                  <div className="img-zoom">
-                    <img
-                      src={p.image}
-                      alt={`${p.title}, ${p.category.toLowerCase()} project in ${p.location}`}
-                      width="600"
-                      height="750"
-                      loading="lazy"
-                      className="aspect-[4/5] w-full object-cover"
-                    />
-                  </div>
-                  <p className="spec-label mt-4">{p.category}</p>
-                  <h3 className="font-display mt-1.5 text-base font-semibold leading-snug text-navy-950 transition-colors group-hover:text-gold-700">
-                    {p.title}
-                  </h3>
-                  <p className="mt-1 font-mono text-xs text-steel-500">{p.location}</p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ---- Layout family 5: real data table for tabular reference data ---- */}
       <section className="border-t border-steel-200 bg-steel-50 py-24 lg:py-32">
         <div className="container-x">
           <Reveal>
             <SectionHeading
-              title="Flagship references"
+              title="Flagship References"
               sub="Projects delivered under international and government main contractors."
             />
           </Reveal>
@@ -427,7 +304,7 @@ export default function Home() {
       <section className="py-24 lg:py-32">
         <div className="container-x">
           <Reveal>
-            <SectionHeading title="Why main contractors appoint us" />
+            <SectionHeading title="Why Main Contractors Appoint Us" />
             <p className="mt-6 max-w-2xl leading-relaxed">
               We compete on technology, quality, commercial terms and delivered performance,
               working to the standards and regulations prevailing in the region.
