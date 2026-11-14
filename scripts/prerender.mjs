@@ -27,13 +27,13 @@ function normalize(html) {
 
 const routes = [
   ['/', 'index.html'],
-  ['/about', 'about/index.html'],
-  ['/services', 'services/index.html'],
-  ['/projects', 'projects/index.html'],
-  ['/contact', 'contact/index.html'],
-  ['/privacy', 'privacy/index.html'],
-  ['/cookies', 'cookies/index.html'],
-  ['/terms', 'terms/index.html'],
+  ['/about', 'about.html'],
+  ['/services', 'services.html'],
+  ['/projects', 'projects.html'],
+  ['/contact', 'contact.html'],
+  ['/privacy', 'privacy.html'],
+  ['/cookies', 'cookies.html'],
+  ['/terms', 'terms.html'],
   ['/no-such-page', '404.html'],
 ]
 

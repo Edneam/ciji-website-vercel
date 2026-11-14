@@ -16,7 +16,7 @@ const FILTER_COPY = {
   All: {
     title: 'Facade Projects in Dubai & Sharjah | CIJI',
     description:
-      'Delivered aluminium and glass facade projects by CIJI in Dubai, Sharjah and Abu Dhabi, from residential towers to commercial buildings and industrial facilities.',
+      'Aluminium and glass facade projects by CIJI in Dubai, Sharjah and Abu Dhabi, from residential towers to commercial buildings and industrial facilities.',
   },
   Residential: {
     title: 'Residential Facade Projects in the UAE | CIJI',
@@ -290,18 +290,22 @@ export default function Projects() {
   }, {})
 
   const copy = FILTER_COPY[filter]
-  const canonicalPath = filter === 'All' ? '/projects' : `/projects?type=${filter.toLowerCase()}`
+  // Faceted views (?type=) are the same document with a subset of the grid.
+  // They stay useful for visitors, but they consolidate to /projects so the
+  // canonical in the prerendered HTML and the sitemap agree instead of
+  // competing with the full catalogue.
+  const canonicalPath = '/projects'
   const listed = [...visible, ...earlierVisible]
   const projectsSchema = [
     {
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijiintl.com/' },
         {
           '@type': 'ListItem',
           position: 2,
           name: 'Projects',
-          item: `https://cijialuminium.com${canonicalPath}`,
+          item: `https://cijiintl.com${canonicalPath}`,
         },
       ],
     },
@@ -313,8 +317,7 @@ export default function Projects() {
         position: index + 1,
         name: p.title,
         description: `${p.category} facade project in ${p.location}`,
-        image: `https://cijialuminium.com${p.image}`,
-        url: `https://cijialuminium.com${canonicalPath}`,
+        image: `https://cijiintl.com${p.image}`,
       })),
     },
   ]
@@ -327,7 +330,9 @@ export default function Projects() {
         path={canonicalPath}
         lcpImage={headerImage}
         pageType="CollectionPage"
-        robots={shot !== null ? 'noindex, follow' : 'index, follow'}
+        robots={
+          shot !== null ? 'noindex, follow' : 'index, follow, max-image-preview:large'
+        }
         schema={projectsSchema}
       />
       <PageHeader

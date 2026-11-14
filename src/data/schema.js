@@ -1,6 +1,6 @@
 import { services } from './services.js'
 
-export const SITE = 'https://cijialuminium.com'
+export const SITE = 'https://cijiintl.com'
 
 const address = {
   '@type': 'PostalAddress',
@@ -27,6 +27,8 @@ export function businessNodes() {
       name: 'Ciji Bldg. Metalic Const. Ind. LLC',
       legalName: 'Ciji Bldg. Metalic Const. Ind. LLC',
       alternateName: ['C.J Group of Companies', 'Ciji Aluminium', 'CIJI'],
+      description:
+        'Aluminium and glass facade contractor in Sharjah and Dubai, designing, fabricating and installing curtain walling, structural glazing, skylights and cladding.',
       url: `${SITE}/`,
       logo: `${SITE}/images/logo.png`,
       image: `${SITE}/images/cover-1.jpg`,
@@ -53,10 +55,13 @@ export function businessNodes() {
       },
     },
     {
-      '@type': 'LocalBusiness',
+      '@type': 'GeneralContractor',
       '@id': `${SITE}/#localbusiness`,
       name: 'Ciji Bldg. Metalic Const. Ind. LLC',
+      description:
+        'Aluminium and glass facade subcontractor serving Sharjah, Dubai and the wider UAE from its head office in Sharjah Industrial Area 17.',
       url: `${SITE}/`,
+      logo: `${SITE}/images/logo.png`,
       image: `${SITE}/images/cover-1.jpg`,
       telephone: '+971-6-5355094',
       email: 'cijialum@yahoo.com',

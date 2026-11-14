@@ -18,7 +18,7 @@ export default function Terms() {
       crumb="Terms"
       lead="These terms cover the use of this website and the status of information published on it, including quotations."
       seoTitle="Terms of Use"
-      seoDescription="Terms of use for the Ciji Bldg. Metalic Const. Ind. LLC website, covering permitted use, the status of quotations, intellectual property and governing law in the UAE."
+      seoDescription="Terms of use for the Ciji Bldg. Metalic Const. Ind. LLC website, covering permitted use, quotations, intellectual property and governing law in the UAE."
       path="/terms"
       updated={legalUpdated}
     >

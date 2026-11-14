@@ -3,6 +3,7 @@ import { SITE, businessNodes } from '../data/schema.js'
 
 const DEFAULT_IMAGE = `${SITE}/images/hero-poster.jpg`
 const OG_IMAGE_ALT = 'Aluminium and glass facade by Ciji Bldg. Metalic Const. Ind. LLC'
+const DEFAULT_ROBOTS = 'index, follow, max-image-preview:large'
 
 function withBrand(title) {
   return /ciji/i.test(title) ? title : `${title} | CIJI`
@@ -41,9 +42,11 @@ function buildHead({
   description,
   path = '/',
   ogType = 'website',
-  ogImage = DEFAULT_IMAGE,
+  ogImage = '',
+  ogImageWidth,
+  ogImageHeight,
   schema = null,
-  robots = 'index, follow',
+  robots = DEFAULT_ROBOTS,
   canonical = true,
   lcpImage = '',
   pageType = 'WebPage',
@@ -51,11 +54,31 @@ function buildHead({
 }) {
   const fullTitle = withBrand(title)
   const fullUrl = `${SITE}${path === '/' ? '/' : path}`
-  const image = ogImage.startsWith('http') ? ogImage : `${SITE}${ogImage}`
+  // Share cards use the page's own hero image when one is declared. Only the
+  // homepage passes explicit dimensions; other pages omit them rather than
+  // publishing a 1920x1080 claim for a 1920x1329 photograph.
+  const imagePath = ogImage || lcpImage
+  const image = imagePath
+    ? imagePath.startsWith('http')
+      ? imagePath
+      : `${SITE}${imagePath}`
+    : DEFAULT_IMAGE
   const json = jsonLd
     ? buildJsonLd({ fullTitle, description, fullUrl, schema, pageType, image })
     : null
-  return { fullTitle, description, fullUrl, image, robots, canonical, lcpImage, ogType, json }
+  return {
+    fullTitle,
+    description,
+    fullUrl,
+    image,
+    ogImageWidth,
+    ogImageHeight,
+    robots,
+    canonical,
+    lcpImage,
+    ogType,
+    json,
+  }
 }
 
 function setMetaTag(name, content, attrName = 'name') {
@@ -67,6 +90,16 @@ function setMetaTag(name, content, attrName = 'name') {
     document.head.appendChild(element)
   }
   element.setAttribute('content', content)
+}
+
+/** Like setMetaTag, but an empty value removes the tag instead of leaving a
+ *  stale one behind on client-side route changes. */
+function setOptionalMetaTag(name, content, attrName = 'name') {
+  if (!content) {
+    document.head.querySelector(`meta[${attrName}="${name}"]`)?.remove()
+    return
+  }
+  setMetaTag(name, content, attrName)
 }
 
 function setLink(rel, href, { hrefLang, attrs } = {}) {
@@ -105,8 +138,8 @@ function applyHead(head) {
   setMetaTag('og:locale', 'en_AE', 'property')
   setMetaTag('og:image', head.image, 'property')
   setMetaTag('og:image:alt', OG_IMAGE_ALT, 'property')
-  setMetaTag('og:image:width', '1920', 'property')
-  setMetaTag('og:image:height', '1080', 'property')
+  setOptionalMetaTag('og:image:width', head.ogImageWidth, 'property')
+  setOptionalMetaTag('og:image:height', head.ogImageHeight, 'property')
   setMetaTag('twitter:card', 'summary_large_image')
   setMetaTag('twitter:title', head.fullTitle)
   setMetaTag('twitter:description', head.description)
@@ -147,8 +180,12 @@ function HeadTags({ head }) {
       <meta property="og:locale" content="en_AE" />
       <meta property="og:image" content={head.image} />
       <meta property="og:image:alt" content={OG_IMAGE_ALT} />
-      <meta property="og:image:width" content="1920" />
-      <meta property="og:image:height" content="1080" />
+      {head.ogImageWidth ? (
+        <meta property="og:image:width" content={String(head.ogImageWidth)} />
+      ) : null}
+      {head.ogImageHeight ? (
+        <meta property="og:image:height" content={String(head.ogImageHeight)} />
+      ) : null}
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={head.fullTitle} />
       <meta name="twitter:description" content={head.description} />
@@ -177,8 +214,10 @@ export default function Seo({
   path = '/',
   ogType = 'website',
   ogImage,
+  ogImageWidth,
+  ogImageHeight,
   schema = null,
-  robots = 'index, follow',
+  robots = DEFAULT_ROBOTS,
   canonical = true,
   lcpImage = '',
   pageType = 'WebPage',
@@ -191,6 +230,8 @@ export default function Seo({
     path,
     ogType,
     ogImage,
+    ogImageWidth,
+    ogImageHeight,
     schema,
     robots,
     canonical,
@@ -207,6 +248,8 @@ export default function Seo({
         path,
         ogType,
         ogImage,
+        ogImageWidth,
+        ogImageHeight,
         schema,
         robots,
         canonical,
@@ -221,6 +264,8 @@ export default function Seo({
     path,
     ogType,
     ogImage,
+    ogImageWidth,
+    ogImageHeight,
     schemaKey,
     schema,
     robots,

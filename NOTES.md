@@ -71,7 +71,9 @@ the deletion for the owner to approve since they are tracked assets.
 
 ### The hero video was footage of the wrong country
 
-`public/videos/hero-bg.mp4`
+**Removed from the build.** The homepage hero uses still photographs
+(`cover-1.jpg` / `cover-2.jpg`) and no page references a video, so
+`public/videos/` was deleted. The history below is kept for the record.
 
 The previous hero video was **downtown Austin, Texas**, identifiable from
 Frost Bank Tower, The Independent, and Google's illuminated "G" logo on the
@@ -127,7 +129,7 @@ so only genuine misses fall through to the rewrite.
 
 `cijialum@yahoo.com` is a free consumer mailbox used as the business contact
 and as the address in the privacy notice. It works, but for a company
-tendering to government authorities a domain address (`info@cijialuminium.com`)
+tendering to government authorities a domain address (`info@cijiintl.com`)
 reads considerably more credible, and it keeps enquiry data under company
 control rather than in a personal account.
 

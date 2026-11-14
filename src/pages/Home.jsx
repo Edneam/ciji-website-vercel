@@ -61,10 +61,12 @@ export default function Home() {
     <>
       <Seo
         title="Aluminium & Glass Facade Contractor UAE | CIJI"
-        description="Aluminium and glass facade contractor in Sharjah and Dubai. Structural glazing, curtain walling, spider glazing, skylights and cladding, fabricated and installed in-house."
+        description="Aluminium and glass facade contractor in Sharjah and Dubai. Structural glazing, curtain walling, spider glazing, skylights and cladding, fabricated in-house."
         path="/"
         lcpImage="/images/cover-1.jpg"
         ogImage="/images/cover-1.jpg"
+        ogImageWidth={1920}
+        ogImageHeight={1329}
       />
 
       {/* ---- Hero: left-aligned, 4 text elements max ---- */}

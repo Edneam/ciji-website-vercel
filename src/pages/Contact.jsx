@@ -10,8 +10,8 @@ import { company } from '../data/site.js'
 const contactSchema = {
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
-    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://cijialuminium.com/contact' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijiintl.com/' },
+    { '@type': 'ListItem', position: 2, name: 'Contact', item: 'https://cijiintl.com/contact' },
   ],
 }
 

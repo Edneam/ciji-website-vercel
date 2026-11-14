@@ -20,7 +20,7 @@ export default function Cookies() {
       crumb="Cookies"
       lead="This website sets no cookies of its own and uses no analytics. The one exception is the Google Maps frame on our contact page, explained below."
       seoTitle="Cookie Notice"
-      seoDescription="Cookie notice for Ciji Bldg. Metalic Const. Ind. LLC. This website sets no cookies of its own and uses no analytics software. The embedded Google Map on the contact page sets Google's own cookies."
+      seoDescription="Cookie notice for Ciji Bldg. Metalic Const. Ind. LLC. The site sets no cookies of its own and uses no analytics. Only the embedded Google Map sets cookies."
       path="/cookies"
       updated={legalUpdated}
     >

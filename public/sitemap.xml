@@ -2,124 +2,106 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
-    <loc>https://cijialuminium.com/</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://cijiintl.com/</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://cijialuminium.com/images/cover-1.jpg</image:loc>
+      <image:loc>https://cijiintl.com/images/cover-1.jpg</image:loc>
       <image:title>Dubai skyline at dusk</image:title>
     </image:image>
   </url>
   <url>
-    <loc>https://cijialuminium.com/services</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://cijiintl.com/services</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://cijialuminium.com/projects</loc>
-    <lastmod>2026-10-28</lastmod>
+    <loc>https://cijiintl.com/projects</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/elysee-heights-1.jpg</image:loc><image:title>Elysee Heights</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-bada-villas-3.jpg</image:loc><image:title>28 Villas and Community Centre</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/oxford-terraces-1.jpg</image:loc><image:title>Oxford Terraces</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/citadel-hotel-1.jpg</image:loc><image:title>Citadel Hotel</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/penrose-palace-1.jpg</image:loc><image:title>Penrose Place</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/international-city-1.jpg</image:loc><image:title>Residential Building, International City</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-rowaiyah-housing-1.jpg</image:loc><image:title>Off-Campus Student Housing</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/oud-metha-residential-1.jpg</image:loc><image:title>G+2P+11 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-furjan-tower-1.jpg</image:loc><image:title>B+G+2P+10 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-jadaf-tower-1.jpg</image:loc><image:title>Commercial and Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-barsha-south-tower-1.jpg</image:loc><image:title>G+4P+10 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-barsha-gp5-1.jpg</image:loc><image:title>G+P+5 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/oxford-gardens-2-1.jpg</image:loc><image:title>Oxford Gardens 2</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-barsha-bg5-1.jpg</image:loc><image:title>B+G+5 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jvc-bg4-1.jpg</image:loc><image:title>B+G+4 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jvc-10aa-003-1.jpg</image:loc><image:title>4B+G+10 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jvc-10aa-004-1.jpg</image:loc><image:title>4B+G+10 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jvc-10b-001-1.jpg</image:loc><image:title>4B+G+8 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-ader-jvc-1.jpg</image:loc><image:title>Al Ader Residential Tower</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/al-satwa-tower-1.jpg</image:loc><image:title>G+2P+8 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/cj-satwa-1.jpg</image:loc><image:title>Residential Building, Satwa</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/wadi-al-safa-g4-1.jpg</image:loc><image:title>G+4 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/wadi-al-safa-bg4-1.jpg</image:loc><image:title>B+G+4 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/wadi-al-safa-3-1.jpg</image:loc><image:title>B+G+5 Commercial and Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jebel-ali-mixed-1.jpg</image:loc><image:title>Retail and Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/jumeirah-staff-1.jpg</image:loc><image:title>G+1 Staff Residence</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/plot-3342413-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/plot-3342417-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/plot-3342938-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/aroma-building-1.jpg</image:loc><image:title>Aroma Residential Tower</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/bindal-al-muk-1.jpg</image:loc><image:title>Bindal Al Muk</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/deyyar-1.jpg</image:loc><image:title>Deyyar</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/meydan-1.jpg</image:loc><image:title>Sama Meydan</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/mh-ed-1.jpg</image:loc><image:title>MH Edition</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/finished/near-citadel-1.jpg</image:loc><image:title>Residential Building near Citadel</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/ic3-tower.jpg</image:loc><image:title>IC3 Tower, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/satwa-g8.jpg</image:loc><image:title>G+8 Residential Building, Satwa</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/jvt-residential.jpg</image:loc><image:title>Residential Building, Jumeirah Village Triangle</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/mag-building.jpg</image:loc><image:title>Mag Building, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/ohana-building.jpg</image:loc><image:title>Ohana Building, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/pivot-building.jpg</image:loc><image:title>Pivot Building, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/titan-building.jpg</image:loc><image:title>Titan Building, Sharjah</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/umm-al-shaif.jpg</image:loc><image:title>Umm Al Shaif</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/cold-stores.jpg</image:loc><image:title>Cold Stores Facility, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/enviroserve.jpg</image:loc><image:title>Enviroserve Facility, Dubai</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/warehouse-large.jpg</image:loc><image:title>Large-Span Warehouse, Jebel Ali</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/buhaira-jadaf.jpg</image:loc><image:title>Buhaira G+14, Jadaf</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/jadaf-g7.jpg</image:loc><image:title>Jadaf G+7 Tower</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/jvc-aroma.jpg</image:loc><image:title>JVC Aroma Residential</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/lacasa.jpg</image:loc><image:title>La Casa Residences</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/pantheon.jpg</image:loc><image:title>Pantheon Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/rowad-al-jazeera.jpg</image:loc><image:title>Rowad Al Jazeera Building</image:title></image:image>
-    <image:image><image:loc>https://cijialuminium.com/images/projects/dubai-walls.jpg</image:loc><image:title>Dubai Walls Project</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/elysee-heights-1.jpg</image:loc><image:title>Elysee Heights</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-bada-villas-3.jpg</image:loc><image:title>28 Villas and Community Centre</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/oxford-terraces-1.jpg</image:loc><image:title>Oxford Terraces</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/citadel-hotel-1.jpg</image:loc><image:title>Citadel Hotel</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/penrose-palace-1.jpg</image:loc><image:title>Penrose Place</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/international-city-1.jpg</image:loc><image:title>Residential Building, International City</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-rowaiyah-housing-1.jpg</image:loc><image:title>Off-Campus Student Housing</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/oud-metha-residential-1.jpg</image:loc><image:title>G+2P+11 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-furjan-tower-1.jpg</image:loc><image:title>B+G+2P+10 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-jadaf-tower-1.jpg</image:loc><image:title>Commercial and Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-barsha-south-tower-1.jpg</image:loc><image:title>G+4P+10 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-barsha-gp5-1.jpg</image:loc><image:title>G+P+5 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/oxford-gardens-2-1.jpg</image:loc><image:title>Oxford Gardens 2</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-barsha-bg5-1.jpg</image:loc><image:title>B+G+5 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jvc-bg4-1.jpg</image:loc><image:title>B+G+4 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jvc-10aa-003-1.jpg</image:loc><image:title>4B+G+10 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jvc-10aa-004-1.jpg</image:loc><image:title>4B+G+10 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jvc-10b-001-1.jpg</image:loc><image:title>4B+G+8 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-ader-jvc-1.jpg</image:loc><image:title>Al Ader Residential Tower</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/al-satwa-tower-1.jpg</image:loc><image:title>G+2P+8 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/cj-satwa-1.jpg</image:loc><image:title>Residential Building, Satwa</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/wadi-al-safa-g4-1.jpg</image:loc><image:title>G+4 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/wadi-al-safa-bg4-1.jpg</image:loc><image:title>B+G+4 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/wadi-al-safa-3-1.jpg</image:loc><image:title>B+G+5 Commercial and Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jebel-ali-mixed-1.jpg</image:loc><image:title>Retail and Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/jumeirah-staff-1.jpg</image:loc><image:title>G+1 Staff Residence</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/plot-3342413-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/plot-3342417-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/plot-3342938-1.jpg</image:loc><image:title>G+P+8 Residential Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/aroma-building-1.jpg</image:loc><image:title>Aroma Residential Tower</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/bindal-al-muk-1.jpg</image:loc><image:title>Bindal Al Muk</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/deyyar-1.jpg</image:loc><image:title>Deyyar</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/meydan-1.jpg</image:loc><image:title>Sama Meydan</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/mh-ed-1.jpg</image:loc><image:title>MH Edition</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/finished/near-citadel-1.jpg</image:loc><image:title>Residential Building near Citadel</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/ic3-tower.jpg</image:loc><image:title>IC3 Tower, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/satwa-g8.jpg</image:loc><image:title>G+8 Residential Building, Satwa</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/jvt-residential.jpg</image:loc><image:title>Residential Building, Jumeirah Village Triangle</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/mag-building.jpg</image:loc><image:title>Mag Building, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/ohana-building.jpg</image:loc><image:title>Ohana Building, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/pivot-building.jpg</image:loc><image:title>Pivot Building, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/titan-building.jpg</image:loc><image:title>Titan Building, Sharjah</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/umm-al-shaif.jpg</image:loc><image:title>Umm Al Shaif</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/cold-stores.jpg</image:loc><image:title>Cold Stores Facility, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/enviroserve.jpg</image:loc><image:title>Enviroserve Facility, Dubai</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/warehouse-large.jpg</image:loc><image:title>Large-Span Warehouse, Jebel Ali</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/buhaira-jadaf.jpg</image:loc><image:title>Buhaira G+14, Jadaf</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/jadaf-g7.jpg</image:loc><image:title>Jadaf G+7 Tower</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/jvc-aroma.jpg</image:loc><image:title>JVC Aroma Residential</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/lacasa.jpg</image:loc><image:title>La Casa Residences</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/pantheon.jpg</image:loc><image:title>Pantheon Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/rowad-al-jazeera.jpg</image:loc><image:title>Rowad Al Jazeera Building</image:title></image:image>
+    <image:image><image:loc>https://cijiintl.com/images/projects/dubai-walls.jpg</image:loc><image:title>Dubai Walls Project</image:title></image:image>
   </url>
   <url>
-    <loc>https://cijialuminium.com/projects?type=residential</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cijialuminium.com/projects?type=commercial</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cijialuminium.com/projects?type=industrial</loc>
-    <lastmod>2026-10-28</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://cijialuminium.com/about</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://cijiintl.com/about</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cijialuminium.com/contact</loc>
-    <lastmod>2026-10-23</lastmod>
+    <loc>https://cijiintl.com/contact</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://cijialuminium.com/privacy</loc>
+    <loc>https://cijiintl.com/privacy</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://cijialuminium.com/cookies</loc>
+    <loc>https://cijiintl.com/cookies</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://cijialuminium.com/terms</loc>
+    <loc>https://cijiintl.com/terms</loc>
     <lastmod>2026-10-23</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

@@ -15,8 +15,8 @@ const aboutSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
-    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://cijialuminium.com/about' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijiintl.com/' },
+    { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://cijiintl.com/about' },
   ],
 }
 

@@ -11,12 +11,12 @@ const servicesSchema = [
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijialuminium.com/' },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://cijiintl.com/' },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Services',
-        item: 'https://cijialuminium.com/services',
+        item: 'https://cijiintl.com/services',
       },
     ],
   },
@@ -26,9 +26,9 @@ const servicesSchema = [
     serviceType: 'Aluminium and Glass Facade Contracting',
     provider: {
       '@type': 'Organization',
-      '@id': 'https://cijialuminium.com/#organization',
+      '@id': 'https://cijiintl.com/#organization',
       name: 'Ciji Bldg. Metalic Const. Ind. LLC',
-      url: 'https://cijialuminium.com/',
+      url: 'https://cijiintl.com/',
     },
     areaServed: 'United Arab Emirates',
     hasOfferCatalog: {
@@ -115,9 +115,10 @@ export default function Services() {
     <>
       <Seo
         title="Glazing, Curtain Wall & Cladding Services | CIJI"
-        description="Aluminium and glass services in the UAE: structural glazing, curtain walling, spider glazing, skylights, space frames, ACP cladding, partitions, doors and handrails."
+        description="Aluminium and glass services in the UAE: structural glazing, curtain walling, spider glazing, skylights, space frames, ACP cladding, partitions and doors."
         path="/services"
         lcpImage="/images/projects/dubai-walls.jpg"
+        pageType="CollectionPage"
         schema={servicesSchema}
       />
       <PageHeader
